@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Studentův Pomocník</string>
+    <string name="action_add_timetable">Přidat rozvrh</string>
+    <string name="action_settings">Nastavení</string>
+    <string-array name="schools">
+        <item>Západočeská univerzita v Plzni</item>
+        <item>Jihočeská univerzita v Českých Budějovicích</item>
+        <item>Přidat další!!</item>
+    </string-array>
+    <string name="add_timetable_hint">Zadejte osobní číslo</string>
+    <string name="add_timetable_button">Přidat</string>
+    <string name="error_no_personal_number">Zadejte osobní číslo!</string>
+    <string name="mo">Pondělí</string>
+    <string name="tu">Úterý</string>
+    <string name="we">Středa</string>
+    <string name="th">Čtvrtek</string>
+    <string name="fr">Pátek</string>
+</resources>
