@@ -27,7 +27,8 @@
         android:id="@+id/personalNumberEditText"
         android:layout_below="@+id/schoolSpinner"
         android:layout_centerHorizontal="true"
-        android:hint="@string/add_timetable_hint" />
+        android:hint="@string/add_timetable_hint"
+        android:text="a13b0347p"/>
 
     <Button
         android:layout_width="wrap_content"

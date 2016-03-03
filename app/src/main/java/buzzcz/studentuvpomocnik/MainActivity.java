@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ExpandableListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +34,23 @@ public class MainActivity extends AppCompatActivity {
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	private ViewPager mViewPager;
+	private ArrayList<Subject> subjectsMo, subjectsTu, subjectsWe, subjectsTh, subjectsFr,
+			subjectsSa, subjectsSu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		TODO if files doesn't exist "click" add timetable button
+//		TODO if files doesn't exist "click" add timetable button, implement config file (last
+// settings) and change it afterwards
+
+		subjectsMo = new ArrayList<>();
+		subjectsTu = new ArrayList<>();
+		subjectsWe = new ArrayList<>();
+		subjectsTh = new ArrayList<>();
+		subjectsFr = new ArrayList<>();
+		subjectsSa = new ArrayList<>();
+		subjectsSu = new ArrayList<>();
+
 		setContentView(R.layout.activity_main);
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -51,6 +65,41 @@ public class MainActivity extends AppCompatActivity {
 
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 		tabLayout.setupWithViewPager(mViewPager);
+		tabLayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener
+				(mViewPager) {
+			@Override
+			public void onTabSelected(TabLayout.Tab tab) {
+				super.onTabSelected(tab);
+				TimetableAdapter adapter;
+				ExpandableListView timetableListView = (ExpandableListView) findViewById(R.id
+						.timetableExpandableListView);
+				switch (tab.getPosition()) {
+					case 0:
+						adapter = new TimetableAdapter(timetableListView.getContext(), subjectsMo);
+						break;
+					case 1:
+						adapter = new TimetableAdapter(timetableListView.getContext(), subjectsTu);
+						break;
+					case 2:
+						adapter = new TimetableAdapter(timetableListView.getContext(), subjectsWe);
+						break;
+					case 3:
+						adapter = new TimetableAdapter(timetableListView.getContext(), subjectsTh);
+						break;
+					case 4:
+						adapter = new TimetableAdapter(timetableListView.getContext(), subjectsFr);
+						break;
+					case 5:
+						adapter = new TimetableAdapter(timetableListView.getContext(), subjectsSa);
+						break;
+					default:
+						adapter = new TimetableAdapter(timetableListView.getContext(), subjectsSu);
+						break;
+				}
+				timetableListView.setAdapter(adapter);
+			}
+		});
+
 	}
 
 
@@ -84,9 +133,13 @@ public class MainActivity extends AppCompatActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 0) {
 			if (resultCode == RESULT_OK) {
-				String result = data.getStringExtra("personalNumber");
-//				TODO parse and load timetable
-				Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+				subjectsMo = data.getParcelableArrayListExtra("subjects0");
+				subjectsTu = data.getParcelableArrayListExtra("subjects1");
+				subjectsWe = data.getParcelableArrayListExtra("subjects2");
+				subjectsTh = data.getParcelableArrayListExtra("subjects3");
+				subjectsFr = data.getParcelableArrayListExtra("subjects4");
+				subjectsSa = data.getParcelableArrayListExtra("subjects5");
+				subjectsSu = data.getParcelableArrayListExtra("subjects6");
 			}
 		}
 	}
@@ -142,8 +195,8 @@ public class MainActivity extends AppCompatActivity {
 
 		@Override
 		public int getCount() {
-			// Show 5 total pages.
-			return 5;
+			// Show 7 total pages.
+			return 7;
 		}
 
 		@Override
@@ -159,6 +212,10 @@ public class MainActivity extends AppCompatActivity {
 					return getString(R.string.th);
 				case 4:
 					return getString(R.string.fr);
+				case 5:
+					return getString(R.string.sa);
+				case 6:
+					return getString(R.string.su);
 			}
 			return null;
 		}
