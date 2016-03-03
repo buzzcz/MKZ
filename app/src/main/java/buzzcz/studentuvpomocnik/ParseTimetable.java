@@ -58,7 +58,7 @@ public final class ParseTimetable {
 		String room = "";
 		String type = "";
 		String semester = "";
-		int day = 0;
+		int day = -1;
 		String starts = "";
 		String ends = "";
 		while (parser.next() != XmlPullParser.END_TAG) {
