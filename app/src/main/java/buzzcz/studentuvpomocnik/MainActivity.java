@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 	 */
 	private ViewPager mViewPager;
 	public static ArrayList<Subject> subjectsMo, subjectsTu, subjectsWe, subjectsTh, subjectsFr,
-			subjectsSa, subjectsSu;
+			subjectsSa, subjectsSu, subjectsOther;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 		subjectsFr = new ArrayList<>();
 		subjectsSa = new ArrayList<>();
 		subjectsSu = new ArrayList<>();
+		subjectsOther = new ArrayList<>();
 
 		setContentView(R.layout.activity_main);
 
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 				subjectsFr = data.getParcelableArrayListExtra("subjects4");
 				subjectsSa = data.getParcelableArrayListExtra("subjects5");
 				subjectsSu = data.getParcelableArrayListExtra("subjects6");
+				subjectsOther = data.getParcelableArrayListExtra("subjects7");
 			}
 		}
 	}
@@ -118,30 +120,13 @@ public class MainActivity extends AppCompatActivity {
 		@Override
 		public Fragment getItem(int position) {
 			// getItem is called to instantiate the fragment for the given page.
-			// Return a FragmentMo (defined as a static inner class below).
-			switch (position) {
-				case 0:
-					return FragmentMo.newInstance(position);
-				case 1:
-					return FragmentTu.newInstance(position);
-				case 2:
-					return FragmentWe.newInstance(position);
-				case 3:
-					return FragmentTh.newInstance(position);
-				case 4:
-					return FragmentFr.newInstance(position);
-				case 5:
-					return FragmentSa.newInstance(position);
-				case 6:
-					return FragmentSu.newInstance(position);
-			}
-			return null;
+			return DayFragment.newInstance(position);
 		}
 
 		@Override
 		public int getCount() {
-			// Show 7 total pages.
-			return 7;
+			// Show 8 total pages.
+			return 8;
 		}
 
 		@Override
@@ -161,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
 					return getString(R.string.sa);
 				case 6:
 					return getString(R.string.su);
+				case 7:
+					return getString(R.string.other);
 			}
 			return null;
 		}

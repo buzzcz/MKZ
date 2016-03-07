@@ -75,7 +75,7 @@ public class AddTimetableActivity extends AppCompatActivity {
 						ch.add(getString(R.string.terms));
 						ch.add(getString(R.string.tasks));
 						ch.add(getString(R.string.absences));
-						for (int i = 0; i < 7; i++) {
+						for (int i = 0; i < 8; i++) {
 							subjects = new ArrayList<>();
 							for (Subject s : timetable) {
 								if (s.getDay() == i) {

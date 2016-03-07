@@ -17,6 +17,7 @@
     <string name="fr">Pátek</string>
     <string name="sa">Sobota</string>
     <string name="su">Neděle</string>
+    <string name="other">Ostatní</string>
     <string name="downloading_dialog_title">Stahování</string>
     <string name="downloading_dialog_text">Počkejte, prosím, stahuji soubory</string>
     <string name="sylabus">Sylabus</string>

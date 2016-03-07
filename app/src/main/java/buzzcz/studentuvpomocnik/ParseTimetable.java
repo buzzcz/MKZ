@@ -58,7 +58,7 @@ public final class ParseTimetable {
 		String room = "";
 		String type = "";
 		String semester = "";
-		int day = -1;
+		int day = 7;
 		String starts = "";
 		String ends = "";
 		while (parser.next() != XmlPullParser.END_TAG) {
@@ -83,7 +83,7 @@ public final class ParseTimetable {
 				case "mistnost":
 					room += readRoom(parser);
 					break;
-				case "typAkceZkr":
+				case "typAkce":
 					type = readType(parser);
 					break;
 				case "semestr":
@@ -168,9 +168,9 @@ public final class ParseTimetable {
 
 	private static String readType(XmlPullParser parser) throws IOException,
 			XmlPullParserException {
-		parser.require(XmlPullParser.START_TAG, null, "typAkceZkr");
+		parser.require(XmlPullParser.START_TAG, null, "typAkce");
 		String type = readText(parser);
-		parser.require(XmlPullParser.END_TAG, null, "typAkceZkr");
+		parser.require(XmlPullParser.END_TAG, null, "typAkce");
 		return type;
 	}
 
@@ -204,7 +204,7 @@ public final class ParseTimetable {
 			case "Ne":
 				return 6;
 			default:
-				return -1;
+				return 7;
 		}
 	}
 
