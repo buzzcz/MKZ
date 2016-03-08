@@ -64,9 +64,11 @@ public class TimetableAdapter extends BaseExpandableListAdapter {
 					.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.subject_group, null);
 		}
-		TextView textView = (TextView) convertView.findViewById(R.id.subjectTextView);
-		textView.setText(subject.getStarts() + "-" + subject.getEnds() + " " + subject
-				.getDepartment() + "/" + subject.getShortcut());
+		TextView textView = (TextView) convertView.findViewById(R.id.timeTextView);
+		textView.setText(subject.getStarts() + "-" + subject.getEnds() + " ");
+
+		textView = (TextView) convertView.findViewById(R.id.subjectTextView);
+		textView.setText(subject.getDepartment() + "/" + subject.getShortcut());
 
 		textView = (TextView) convertView.findViewById(R.id.subjectNameTextView);
 		textView.setText(subject.getName());

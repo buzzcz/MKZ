@@ -7,5 +7,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/subjectChildButton"/>
+        android:id="@+id/subjectChildButton"
+        android:onClick="showSylabus"/>
 </LinearLayout>

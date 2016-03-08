@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -62,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 		tabLayout.setupWithViewPager(mViewPager);
+	}
+
+	public void showSylabus(View v) {
+		String name = ((TextView) ((View) v.getParent().getParent()).findViewById(R.id
+				.subjectTextView)).getText().toString();
+		Intent sylabusIntent = new Intent(this, SylabusActivity.class);
+		sylabusIntent.putExtra("subject", name);
+		startActivity(sylabusIntent);
 	}
 
 

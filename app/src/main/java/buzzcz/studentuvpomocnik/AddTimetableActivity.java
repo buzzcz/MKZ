@@ -1,7 +1,6 @@
 package buzzcz.studentuvpomocnik;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +14,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,15 +40,13 @@ public class AddTimetableActivity extends AppCompatActivity {
 		String personalNumber = ((EditText) findViewById(R.id.personalNumberEditText))
 				.getText()
 				.toString().toUpperCase();
-		String prefix = "";
+		String prefix = "stag-ws";
 		String school = "";
 		switch (((Spinner) findViewById(R.id.schoolSpinner)).getSelectedItemPosition()) {
 			case 0:
-				prefix = "stag-ws";
 				school = "zcu";
 				break;
 			case 1:
-				prefix = "stag-ws";
 				school = "jcu";
 				break;
 		}
@@ -56,35 +54,23 @@ public class AddTimetableActivity extends AppCompatActivity {
 		if (!personalNumber.trim().isEmpty()) {
 			final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string
 					.downloading_dialog_title), getString(R.string.downloading_dialog_text));
-			final String file = school + "_" + personalNumber + "_timetable.xml";
-			final String webPage = "https://" + prefix + "." + school + "" +
-					".cz/ws/services/rest/rozvrhy/getRozvrhByStudent?osCislo=" + personalNumber;
+			final String dir = getFilesDir().getAbsolutePath() + File.separator + school + File
+					.separator + personalNumber;
+			final String webPage = "https://" + prefix + "." + school + "" + "" +
+					".cz/ws/services/rest/";
+			final String timetablePostfix = "rozvrhy/getRozvrhByStudent?osCislo=" + personalNumber;
 			Thread t = new Thread(new Runnable() {
 				@Override
 				public void run() {
 					try {
-						dowloadTimetable(file, webPage);
-						ArrayList<Subject> timetable = ParseTimetable.parseTimetable(openFileInput
-								(file));
-						timetable = editTimetable(timetable);
+						dowloadFile(dir, "timetable.xml", webPage + timetablePostfix);
+						ArrayList<Subject> timetable = ParseXmls.parseTimetable(new
+								FileInputStream(dir + File.separator + "timetable.xml"));
 //						TODO download sylabus
+						downloadSylabus(dir, webPage, timetable);
+
 						Intent result = new Intent();
-						ArrayList<Subject> subjects;
-						ArrayList<String> ch = new ArrayList<>();
-						ch.add(getString(R.string.sylabus));
-						ch.add(getString(R.string.terms));
-						ch.add(getString(R.string.tasks));
-						ch.add(getString(R.string.absences));
-						for (int i = 0; i < 8; i++) {
-							subjects = new ArrayList<>();
-							for (Subject s : timetable) {
-								if (s.getDay() == i) {
-									subjects.add(s);
-								}
-							}
-							for (Subject s : subjects) s.setItems(ch);
-							result.putExtra("subjects" + i, subjects);
-						}
+						editTimetable(timetable, result);
 						setResult(RESULT_OK, result);
 						dialog.dismiss();
 						finish();
@@ -100,13 +86,16 @@ public class AddTimetableActivity extends AppCompatActivity {
 		}
 	}
 
-	private void dowloadTimetable(String file, String webPage) throws IOException {
+	private void dowloadFile(String dir, String file, String webPage) throws IOException {
 		URL url = new URL(webPage);
 		URLConnection connection = url.openConnection();
 		connection.connect();
 		InputStream input = new BufferedInputStream(url.openStream());
-		if (new File(file).exists()) new File(file).delete();
-		FileOutputStream output = openFileOutput(file, Context.MODE_PRIVATE);
+		File f = new File(dir, file);
+		if (f.exists())
+			f.delete();
+		f.getParentFile().mkdirs();
+		FileOutputStream output = new FileOutputStream(f);
 		byte data[] = new byte[1024];
 		int n;
 		while ((n = input.read(data)) != -1) {
@@ -117,7 +106,17 @@ public class AddTimetableActivity extends AppCompatActivity {
 		input.close();
 	}
 
-	private ArrayList<Subject> editTimetable(ArrayList<Subject> timetable) {
+	private void downloadSylabus(String dir, String webPage, ArrayList<Subject> timetable) throws
+			IOException {
+		for (Subject s : timetable) {
+			String sylabusPostfix = "predmety/getPredmetInfo?katedra=" + s.getDepartment() +
+					"&zkratka=" + s.getShortcut();
+			dowloadFile(dir, "sylabus" + s.getDepartment() + "_" + s.getShortcut() + ".xml",
+					webPage + sylabusPostfix);
+		}
+	}
+
+	private void editTimetable(ArrayList<Subject> timetable, Intent result) {
 		ArrayList<Subject> toRemove = new ArrayList<>();
 		Calendar now = Calendar.getInstance();
 		Calendar unor = Calendar.getInstance();
@@ -138,6 +137,22 @@ public class AddTimetableActivity extends AppCompatActivity {
 				return lhs.getStarts().compareTo(rhs.getStarts());
 			}
 		});
-		return timetable;
+
+		ArrayList<Subject> subjects;
+		ArrayList<String> ch = new ArrayList<>();
+		ch.add(getString(R.string.sylabus));
+		ch.add(getString(R.string.terms));
+		ch.add(getString(R.string.tasks));
+		ch.add(getString(R.string.absences));
+		for (int i = 0; i < 8; i++) {
+			subjects = new ArrayList<>();
+			for (Subject s : timetable) {
+				if (s.getDay() == i) {
+					subjects.add(s);
+				}
+			}
+			for (Subject s : subjects) s.setItems(ch);
+			result.putExtra("subjects" + i, subjects);
+		}
 	}
 }
