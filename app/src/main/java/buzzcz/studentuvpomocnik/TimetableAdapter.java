@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -92,8 +91,6 @@ public class TimetableAdapter extends BaseExpandableListAdapter {
 					.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.subject_child, null);
 		}
-		Button button = (Button) convertView.findViewById(R.id.subjectChildButton);
-		button.setText(groups.get(groupPosition).getItems().get(childPosition));
 		return convertView;
 	}
 

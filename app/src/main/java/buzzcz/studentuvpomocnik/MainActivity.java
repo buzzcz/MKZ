@@ -1,6 +1,8 @@
 package buzzcz.studentuvpomocnik;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,7 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,25 +42,17 @@ public class MainActivity extends AppCompatActivity {
 	private ViewPager mViewPager;
 	public static ArrayList<Subject> subjectsMo, subjectsTu, subjectsWe, subjectsTh, subjectsFr,
 			subjectsSa, subjectsSu, subjectsOther;
+	private String school, personalNumber;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		TODO if files doesn't exist "click" add timetable button, implement config file (last
-// settings) and change it afterwards
-
-		subjectsMo = new ArrayList<>();
-		subjectsTu = new ArrayList<>();
-		subjectsWe = new ArrayList<>();
-		subjectsTh = new ArrayList<>();
-		subjectsFr = new ArrayList<>();
-		subjectsSa = new ArrayList<>();
-		subjectsSu = new ArrayList<>();
-		subjectsOther = new ArrayList<>();
+		readConfig();
 
 		setContentView(R.layout.activity_main);
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		toolbar.setLogo(R.drawable.logo);
 		setSupportActionBar(toolbar);
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
@@ -64,16 +64,139 @@ public class MainActivity extends AppCompatActivity {
 
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 		tabLayout.setupWithViewPager(mViewPager);
+
+		showCurrentDay();
+	}
+
+	private void readConfig() {
+		final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string
+				.loading_dialog_title), getString(R.string.loading_dialog_text));
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				loadSubjects(dialog);
+			}
+		}).start();
+	}
+
+	private void loadSubjects(ProgressDialog dialog) {
+		SharedPreferences settings = getSharedPreferences("config",
+				MODE_PRIVATE);
+		school = settings.getString("school", null);
+		personalNumber = settings.getString("personalNumber", null);
+		try {
+			if (school != null && personalNumber != null) {
+				String dir = getFilesDir().getAbsolutePath() + File.separator + school +
+						File
+								.separator + personalNumber;
+				ArrayList<Subject> timetable = ParseXmls.parseTimetable(new
+						FileInputStream(dir + File.separator + "timetable.xml"));
+				Subject.sortTimetable(timetable);
+
+				ArrayList<String> ch = new ArrayList<>();
+				ch.add("");
+				for (Subject s : timetable) s.setItems(ch);
+
+				setEmptySubjectArrayList();
+				for (Subject s : timetable) {
+					switch (s.getDay()) {
+						case 0:
+							subjectsMo.add(s);
+							break;
+						case 1:
+							subjectsTu.add(s);
+							break;
+						case 2:
+							subjectsWe.add(s);
+							break;
+						case 3:
+							subjectsTh.add(s);
+							break;
+						case 4:
+							subjectsFr.add(s);
+							break;
+						case 5:
+							subjectsSa.add(s);
+							break;
+						case 6:
+							subjectsSu.add(s);
+							break;
+						case 7:
+							subjectsOther.add(s);
+							break;
+					}
+				}
+
+			} else {
+				setEmptySubjectArrayList();
+			}
+		} catch (XmlPullParserException | IOException e) {
+			e.printStackTrace();
+			setEmptySubjectArrayList();
+		} finally {
+			dialog.dismiss();
+		}
+	}
+
+	private void setEmptySubjectArrayList() {
+		subjectsMo = new ArrayList<>();
+		subjectsTu = new ArrayList<>();
+		subjectsWe = new ArrayList<>();
+		subjectsTh = new ArrayList<>();
+		subjectsFr = new ArrayList<>();
+		subjectsSa = new ArrayList<>();
+		subjectsSu = new ArrayList<>();
+		subjectsOther = new ArrayList<>();
+	}
+
+	private void showCurrentDay() {
+		int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+		switch (day) {
+			case Calendar.MONDAY:
+				mViewPager.setCurrentItem(0);
+				break;
+			case Calendar.TUESDAY:
+				mViewPager.setCurrentItem(1);
+				break;
+			case Calendar.WEDNESDAY:
+				mViewPager.setCurrentItem(2);
+				break;
+			case Calendar.THURSDAY:
+				mViewPager.setCurrentItem(3);
+				break;
+			case Calendar.FRIDAY:
+				mViewPager.setCurrentItem(4);
+				break;
+			case Calendar.SATURDAY:
+				mViewPager.setCurrentItem(5);
+				break;
+			case Calendar.SUNDAY:
+				mViewPager.setCurrentItem(6);
+				break;
+		}
 	}
 
 	public void showSylabus(View v) {
-		String name = ((TextView) ((View) v.getParent().getParent()).findViewById(R.id
+		String subjectName = ((TextView) ((View) v.getParent().getParent()).findViewById(R.id
 				.subjectTextView)).getText().toString();
 		Intent sylabusIntent = new Intent(this, SylabusActivity.class);
-		sylabusIntent.putExtra("subject", name);
+		sylabusIntent.putExtra("school", school);
+		sylabusIntent.putExtra("personalNumber", personalNumber);
+		sylabusIntent.putExtra("subject", subjectName);
 		startActivity(sylabusIntent);
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (school != null && personalNumber != null) {
+			SharedPreferences settings = getSharedPreferences("config", MODE_PRIVATE);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putString("school", school);
+			editor.putString("personalNumber", personalNumber);
+			editor.apply();
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -113,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
 				subjectsSa = data.getParcelableArrayListExtra("subjects5");
 				subjectsSu = data.getParcelableArrayListExtra("subjects6");
 				subjectsOther = data.getParcelableArrayListExtra("subjects7");
+				school = data.getStringExtra("school");
+				personalNumber = data.getStringExtra("personalNumber");
 			}
 		}
 	}

@@ -4,6 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Subject implements Parcelable {
 	private String name;
@@ -194,5 +197,28 @@ public class Subject implements Parcelable {
 		dest.writeString(starts);
 		dest.writeString(ends);
 		dest.writeStringList(items);
+	}
+
+	public static void sortTimetable(ArrayList<Subject> timetable) {
+		ArrayList<Subject> toRemove = new ArrayList<>();
+		Calendar now = Calendar.getInstance();
+		Calendar unor = Calendar.getInstance();
+		unor.set(now.get(Calendar.YEAR), 1, 1);
+		if (now.compareTo(unor) == -1) {
+			for (Subject s : timetable) {
+				if (s.getSemester().equals("LS")) toRemove.add(s);
+			}
+		} else {
+			for (Subject s : timetable) {
+				if (s.getSemester().equals("ZS")) toRemove.add(s);
+			}
+		}
+		timetable.removeAll(toRemove);
+		Collections.sort(timetable, new Comparator<Subject>() {
+			@Override
+			public int compare(Subject lhs, Subject rhs) {
+				return lhs.getStarts().compareTo(rhs.getStarts());
+			}
+		});
 	}
 }
