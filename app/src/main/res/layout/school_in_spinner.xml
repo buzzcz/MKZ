@@ -7,9 +7,8 @@
 
     <ImageView
         android:id="@+id/schoolIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <!-- TODO images should have same width-->
+        android:layout_width="20dp"
+        android:layout_height="20dp"/>
 
     <TextView
         android:id="@+id/schoolInSpinner"
