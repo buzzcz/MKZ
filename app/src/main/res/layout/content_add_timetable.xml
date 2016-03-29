@@ -16,27 +16,26 @@
         android:id="@+id/schoolSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:entries="@array/schools"/>
+        android:layout_above="@+id/personalNumberEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <EditText
         android:id="@+id/personalNumberEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/schoolSpinner"
-        android:layout_centerHorizontal="true"
         android:hint="@string/add_timetable_hint"
-        android:text="a13b0347p"/>
+        android:text="a13b0347p"
+        android:layout_above="@+id/addTimetableButton"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/addTimetableButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:hint="@string/add_timetable_button"
-        android:onClick="addTimetableButtonAction"/>
+        android:onClick="addTimetableButtonAction"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

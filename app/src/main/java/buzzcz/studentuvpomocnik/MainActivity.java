@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -42,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
 	private ViewPager mViewPager;
 	public static ArrayList<Subject> subjectsMo, subjectsTu, subjectsWe, subjectsTh, subjectsFr,
 			subjectsSa, subjectsSu, subjectsOther;
-	private String school, personalNumber;
+	private String school, personalNumber, semester;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		PreferenceManager.setDefaultValues(this, R.xml.settings, false);
 		readConfig();
 
 		setContentView(R.layout.activity_main);
@@ -80,18 +83,17 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void loadSubjects(ProgressDialog dialog) {
-		SharedPreferences settings = getSharedPreferences("config",
-				MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("config", MODE_PRIVATE);
 		school = settings.getString("school", null);
 		personalNumber = settings.getString("personalNumber", null);
+		semester = settings.getString("semester", null);
 		try {
 			if (school != null && personalNumber != null) {
-				String dir = getFilesDir().getAbsolutePath() + File.separator + school +
-						File
-								.separator + personalNumber;
-				ArrayList<Subject> timetable = ParseXmls.parseTimetable(new
-						FileInputStream(dir + File.separator + "timetable.xml"));
-				Subject.sortTimetable(timetable);
+				String dir = getFilesDir().getAbsolutePath() + File.separator + school + File
+						.separator + personalNumber;
+				ArrayList<Subject> timetable = ParseXmls.parseTimetable(new FileInputStream(dir +
+						File.separator + "timetable.xml"));
+				Subject.sortTimetable(timetable, semester);
 
 				ArrayList<String> ch = new ArrayList<>();
 				ch.add("");
@@ -214,9 +216,12 @@ public class MainActivity extends AppCompatActivity {
 
 		//noinspection SimplifiableIfStatement
 		if (id == R.id.action_settings) {
+			Intent settingsIntent = new Intent(this, SettingsActivity.class);
+			startActivity(settingsIntent);
 			return true;
 		} else if (id == R.id.action_add_timetable) {
 			Intent addTimetableIntent = new Intent(this, AddTimetableActivity.class);
+			addTimetableIntent.putExtra("semester", semester);
 			startActivityForResult(addTimetableIntent, 0);
 			return true;
 		}

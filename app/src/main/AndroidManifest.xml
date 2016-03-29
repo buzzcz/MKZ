@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="buzzcz.studentuvpomocnik"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="buzzcz.studentuvpomocnik"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -26,6 +25,14 @@
             android:label="@string/action_add_timetable"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+        </activity>
+        <activity android:name=".SettingsActivity"
+                  android:label="@string/action_settings"
+                  android:parentActivityName=".MainActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="buzzcz.studentuvpomocnik.MainActivity"/>

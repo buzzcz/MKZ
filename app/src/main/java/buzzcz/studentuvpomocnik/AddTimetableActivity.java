@@ -1,14 +1,21 @@
 package buzzcz.studentuvpomocnik;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -32,6 +39,90 @@ public class AddTimetableActivity extends AppCompatActivity {
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		Spinner schoolSpinner = (Spinner) findViewById(R.id.schoolSpinner);
+		schoolSpinner.setAdapter(new SchoolInSpinnerAdapter(this, R.layout.school_in_spinner,
+				getResources().getStringArray(R.array.schools)));
+
+	}
+
+	private class SchoolInSpinnerAdapter extends ArrayAdapter<String> {
+
+		public SchoolInSpinnerAdapter(Context context, int resource, String[] schools) {
+			super(context, resource, schools);
+		}
+
+		@Override
+		public View getDropDownView(int position, View convertView, ViewGroup parent) {
+			return getCustomView(position, convertView, parent);
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			return getCustomView(position, convertView, parent);
+		}
+
+		public View getCustomView(int position, View convertView, ViewGroup parent) {
+			LayoutInflater inflater = getLayoutInflater();
+			View row = inflater.inflate(R.layout.school_in_spinner, parent, false);
+			TextView label = (TextView) row.findViewById(R.id.schoolInSpinner);
+			label.setText(getResources().getStringArray(R.array.schools)[position]);
+
+			ImageView icon = (ImageView) row.findViewById(R.id.schoolIcon);
+
+			switch (position) {
+				case 0:
+					icon.setImageResource(R.drawable.zcu);
+					break;
+				case 1:
+					icon.setImageResource(R.drawable.jcu);
+					break;
+				case 2:
+					icon.setImageResource(R.drawable.avu);
+					break;
+				case 3:
+					icon.setImageResource(R.drawable.mvso);
+					break;
+				case 4:
+					icon.setImageResource(R.drawable.slu);
+					break;
+				case 5:
+					icon.setImageResource(R.drawable.tul);
+					break;
+				case 6:
+					icon.setImageResource(R.drawable.uhk);
+					break;
+				case 7:
+					icon.setImageResource(R.drawable.ujep);
+					break;
+				case 8:
+					icon.setImageResource(R.drawable.upce);
+					break;
+				case 9:
+					icon.setImageResource(R.drawable.upol);
+					break;
+				case 10:
+					icon.setImageResource(R.drawable.utb);
+					break;
+				case 11:
+					icon.setImageResource(R.drawable.vfu);
+					break;
+				case 12:
+					icon.setImageResource(R.drawable.voscb);
+					break;
+				case 13:
+					icon.setImageResource(R.drawable.vsss);
+					break;
+				case 14:
+					icon.setImageResource(R.drawable.vske);
+					break;
+				case 15:
+					icon.setImageResource(R.drawable.vsrr);
+					break;
+			}
+
+			return row;
+		}
 	}
 
 	@Override
@@ -47,28 +138,80 @@ public class AddTimetableActivity extends AppCompatActivity {
 
 	public void addTimetableButtonAction(View v) throws InterruptedException {
 		final String personalNumber = ((EditText) findViewById(R.id.personalNumberEditText))
-				.getText()
-				.toString().toUpperCase();
-		String prefix = "stag-ws";
-		String school = "";
-		switch (((Spinner) findViewById(R.id.schoolSpinner)).getSelectedItemPosition()) {
-			case 0:
-				school = "zcu";
-				break;
-			case 1:
-				school = "jcu";
-				break;
-		}
+				.getText().toString().toUpperCase();
 
 		if (!personalNumber.trim().isEmpty()) {
 			final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string
 					.downloading_dialog_title), getString(R.string.downloading_dialog_text));
-			final String dir = getFilesDir().getAbsolutePath() + File.separator + school + File
-					.separator + personalNumber;
-			final String webPage = "https://" + prefix + "." + school + "" + "" +
+			String prefix = "stag-ws";
+			String school = "";
+			switch (((Spinner) findViewById(R.id.schoolSpinner)).getSelectedItemPosition()) {
+				case 0:
+					school = "zcu";
+					break;
+				case 1:
+					school = "jcu";
+					break;
+				case 2:
+					school = "avu";
+					prefix = "stag";
+					break;
+				case 3:
+					school = "zcu";
+					prefix = "stag-mvso";
+					break;
+				case 4:
+					school = "slu";
+					break;
+				case 5:
+					school = "tul";
+					break;
+				case 6:
+					school = "uhk";
+					prefix = "stagws";
+					break;
+				case 7:
+					school = "ujep";
+					prefix = "ws";
+					break;
+				case 8:
+					school = "upce";
+					break;
+				case 9:
+					school = "upol";
+					prefix = "stagservices";
+					break;
+				case 10:
+					school = "utb";
+					break;
+				case 11:
+					school = "vfu";
+					prefix = "stagweb";
+					break;
+				case 12:
+					school = "zcu";
+					prefix = "stag-voscb";
+					break;
+				case 13:
+					school = "zcu";
+					prefix = "stag-vsss";
+					break;
+				case 14:
+					school = "zcu";
+					prefix = "stag-vske";
+					break;
+				case 15:
+					school = "zcu";
+					prefix = "stag-vsrr";
+					break;
+			}
+			final String dir = getFilesDir().getAbsolutePath() + File.separator + prefix + File
+					.separator + school + File.separator + personalNumber;
+			final String webPage = "https://" + prefix + "." + school + "" +
 					".cz/ws/services/rest/";
-			final String timetablePostfix = "rozvrhy/getRozvrhByStudent?osCislo=" + personalNumber;
-			final String finalSchool = school;
+			final String timetablePostfix = "rozvrhy/getRozvrhByStudent?osCislo=" +
+					personalNumber;
+			final String finalSchool = prefix + File.separator + school;
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -83,6 +226,16 @@ public class AddTimetableActivity extends AppCompatActivity {
 						result.putExtra("school", finalSchool);
 						result.putExtra("personalNumber", personalNumber);
 						setResult(RESULT_OK, result);
+
+						SharedPreferences settings = getSharedPreferences("timetables",
+								MODE_PRIVATE);
+						SharedPreferences.Editor editor = settings.edit();
+						String timetables = settings.getString("timetables", null);
+						timetables = timetables != null ? timetables + "," + finalSchool + "/" +
+								personalNumber : finalSchool + "/" + personalNumber;
+						editor.remove("timetables").putString("timetables", timetables);
+						editor.apply();
+
 						dialog.dismiss();
 						finish();
 					} catch (IOException | XmlPullParserException e) {
@@ -91,7 +244,8 @@ public class AddTimetableActivity extends AppCompatActivity {
 				}
 			}).start();
 		} else {
-			Toast.makeText(this, getString(R.string.error_no_personal_number), Toast.LENGTH_LONG)
+			Toast.makeText(this, getString(R.string.error_no_personal_number), Toast
+					.LENGTH_LONG)
 					.show();
 		}
 	}
@@ -116,7 +270,8 @@ public class AddTimetableActivity extends AppCompatActivity {
 		input.close();
 	}
 
-	private void downloadSylabus(String dir, String webPage, ArrayList<Subject> timetable) throws
+	private void downloadSylabus(String dir, String webPage, ArrayList<Subject> timetable)
+			throws
 			IOException {
 		for (Subject s : timetable) {
 			String sylabusPostfix = "predmety/getPredmetInfo?katedra=" + s.getDepartment() +
@@ -127,7 +282,7 @@ public class AddTimetableActivity extends AppCompatActivity {
 	}
 
 	private void editTimetable(ArrayList<Subject> timetable, Intent result) {
-		Subject.sortTimetable(timetable);
+		Subject.sortTimetable(timetable, getIntent().getStringExtra("semester"));
 
 		ArrayList<String> ch = new ArrayList<>();
 		ch.add("");

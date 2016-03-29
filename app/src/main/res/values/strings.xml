@@ -1,18 +1,43 @@
 <resources>
+    <!-- General-->
     <string name="app_name">Studentův Pomocník</string>
     <string name="action_add_timetable">Přidat rozvrh</string>
     <string name="action_settings">Nastavení</string>
 
+    <!-- Settings-->
+    <string name="personal_number_pref">Osobní číslo</string>
+    <string name="personal_number_hint">Osobní číslo, pro které chcete zobrazit rozvrh</string>
+    <string name="semester">Semestr</string>
+    <string name="semester_hint">Semestr, pro který chcete zobrazit rozvrh</string>
+    <string-array name="semester_array">
+        <item>Zimní</item>
+        <item>Letní</item>
+    </string-array>
+
+    <!-- Add timetable-->
     <string-array name="schools">
         <item>Západočeská univerzita v Plzni</item>
         <item>Jihočeská univerzita v Českých Budějovicích</item>
-        <item>Přidat další!!</item>
+        <item>Akademie výtvarných umění v Praze</item>
+        <item>Moravská vysoká škola Olomouc</item>
+        <item>Slezská univerzita v Opavě</item>
+        <item>Technická univerzita v Liberci</item>
+        <item>Univerzita Hradec Králové</item>
+        <item>Univerzita J. E. Purkyně v Ústí nad Labem</item>
+        <item>Univerzita Pardubice</item>
+        <item>Univerzita Palackého v Olomouci</item>
+        <item>Univerzita Tomáše Bati ve Zlíně</item>
+        <item>Veterinární a farmaceutická univerzita Brno</item>
+        <item>Vyšší odborná škola České Budějovice</item>
+        <item>Vysoká škola sociálně-správní, Havířov</item>
+        <item>Vysoká škola Karla Engliše, a. s.</item>
+        <item>Vysoká škola regionálního rozvoje</item>
     </string-array>
-
     <string name="add_timetable_hint">Zadejte osobní číslo</string>
     <string name="add_timetable_button">Přidat</string>
     <string name="error_no_personal_number">Zadejte osobní číslo!</string>
 
+    <!-- Days-->
     <string name="mo">Pondělí</string>
     <string name="tu">Úterý</string>
     <string name="we">Středa</string>
@@ -22,11 +47,13 @@
     <string name="su">Neděle</string>
     <string name="other">Ostatní</string>
 
+    <!-- Waiting dialogs-->
     <string name="downloading_dialog_title">Stahování</string>
     <string name="downloading_dialog_text">Počkejte, prosím, stahuji soubory</string>
     <string name="loading_dialog_title">Náčítání</string>
     <string name="loading_dialog_text">Počkejte, prosím, načítám data</string>
 
+    <!-- Sylabus-->
     <string name="sylabus">Sylabus</string>
     <string name="terms">Podmínky</string>
     <string name="tasks">Úkoly</string>
@@ -54,4 +81,5 @@
     <string name="sylabus_time_severity">Časová náročnost: </string>
     <string name="sylabus_url">URL: </string>
     <string name="sylabus_languages">Vyučovací jazyky: </string>
+
 </resources>
