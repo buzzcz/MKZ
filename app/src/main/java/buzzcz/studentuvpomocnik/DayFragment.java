@@ -76,39 +76,6 @@ public class DayFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-		ExpandableListView timetableListView = (ExpandableListView) rootView.findViewById(R.id
-				.timetableExpandableListView);
-		switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-			case 0:
-				timetableListView.setAdapter(new TimetableAdapter(timetableListView.getContext(),
-						MainActivity.subjectsMo));
-				break;
-			case 1:
-				timetableListView.setAdapter(new TimetableAdapter(timetableListView.getContext(),
-						MainActivity.subjectsTu));
-				break;
-			case 2:
-				timetableListView.setAdapter(new TimetableAdapter(timetableListView.getContext(),
-						MainActivity.subjectsWe));
-				break;
-			case 3:
-				timetableListView.setAdapter(new TimetableAdapter(timetableListView.getContext(),
-						MainActivity.subjectsTh));
-				break;
-			case 4:
-				timetableListView.setAdapter(new TimetableAdapter(timetableListView.getContext(),
-						MainActivity.subjectsFr));
-				break;
-			case 5:
-				timetableListView.setAdapter(new TimetableAdapter(timetableListView.getContext(),
-						MainActivity.subjectsSa));
-				break;
-			case 6:
-				timetableListView.setAdapter(new TimetableAdapter(timetableListView.getContext(),
-						MainActivity.subjectsSu));
-				break;
-		}
-		return rootView;
+		return inflater.inflate(R.layout.fragment_main, container, false);
 	}
 }

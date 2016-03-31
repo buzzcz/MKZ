@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class SylabusActivity extends AppCompatActivity {
 
-	private String school, personalNumber, subjectName;
+	private String personalNumber, subjectName;
 	private Sylabus sylabus;
 
 	@Override
@@ -28,7 +28,6 @@ public class SylabusActivity extends AppCompatActivity {
 
 		final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string
 				.loading_dialog_title), getString(R.string.loading_dialog_text));
-		school = getIntent().getStringExtra("school");
 		personalNumber = getIntent().getStringExtra("personalNumber");
 		subjectName = getIntent().getStringExtra("subject");
 		subjectName = subjectName.replace("/", "_");
@@ -36,8 +35,7 @@ public class SylabusActivity extends AppCompatActivity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				String dir = getFilesDir().getAbsolutePath() + File.separator + school + File
-						.separator + personalNumber;
+				String dir = getFilesDir().getAbsolutePath() + File.separator + personalNumber;
 				try {
 					sylabus = ParseXmls.parseSylabus(new FileInputStream(dir + File.separator +
 							"sylabus_" + subjectName + ".xml"));

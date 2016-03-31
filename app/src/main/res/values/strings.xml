@@ -9,9 +9,13 @@
     <string name="personal_number_hint">Osobní číslo, pro které chcete zobrazit rozvrh</string>
     <string name="semester">Semestr</string>
     <string name="semester_hint">Semestr, pro který chcete zobrazit rozvrh</string>
-    <string-array name="semester_array">
+    <string-array name="semester_entries">
         <item>Zimní</item>
         <item>Letní</item>
+    </string-array>
+    <string-array name="semester_entry_values">
+        <item>ZS</item>
+        <item>LS</item>
     </string-array>
 
     <!-- Add timetable-->

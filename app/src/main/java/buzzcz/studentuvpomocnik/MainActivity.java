@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 	private ViewPager mViewPager;
 	public static ArrayList<Subject> subjectsMo, subjectsTu, subjectsWe, subjectsTh, subjectsFr,
 			subjectsSa, subjectsSu, subjectsOther;
-	private String school, personalNumber, semester;
+	private String personalNumber, semester;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,54 +83,55 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void loadSubjects(ProgressDialog dialog) {
-		SharedPreferences settings = getSharedPreferences("config", MODE_PRIVATE);
-		school = settings.getString("school", null);
-		personalNumber = settings.getString("personalNumber", null);
-		semester = settings.getString("semester", null);
 		try {
-			if (school != null && personalNumber != null) {
-				String dir = getFilesDir().getAbsolutePath() + File.separator + school + File
-						.separator + personalNumber;
-				ArrayList<Subject> timetable = ParseXmls.parseTimetable(new FileInputStream(dir +
-						File.separator + "timetable.xml"));
-				Subject.sortTimetable(timetable, semester);
+			SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+			if (!settings.getString("personalNumber", "null").equals(personalNumber) || !settings
+					.getString("semester", "null").equals(semester)) {
+				personalNumber = settings.getString("personalNumber", null);
+				semester = settings.getString("semester", null);
+				if (personalNumber != null && !personalNumber.equals("null")) {
+					String dir = getFilesDir().getAbsolutePath() + File.separator + personalNumber;
+					ArrayList<Subject> timetable = ParseXmls.parseTimetable(new FileInputStream
+							(dir + File.separator + "timetable.xml"));
+					Subject.sortTimetable(timetable, semester);
 
-				ArrayList<String> ch = new ArrayList<>();
-				ch.add("");
-				for (Subject s : timetable) s.setItems(ch);
+					ArrayList<String> ch = new ArrayList<>();
+					ch.add("");
+					for (Subject s : timetable) s.setItems(ch);
 
-				setEmptySubjectArrayList();
-				for (Subject s : timetable) {
-					switch (s.getDay()) {
-						case 0:
-							subjectsMo.add(s);
-							break;
-						case 1:
-							subjectsTu.add(s);
-							break;
-						case 2:
-							subjectsWe.add(s);
-							break;
-						case 3:
-							subjectsTh.add(s);
-							break;
-						case 4:
-							subjectsFr.add(s);
-							break;
-						case 5:
-							subjectsSa.add(s);
-							break;
-						case 6:
-							subjectsSu.add(s);
-							break;
-						case 7:
-							subjectsOther.add(s);
-							break;
+					setEmptySubjectArrayList();
+					for (Subject s : timetable) {
+						switch (s.getDay()) {
+							case 0:
+								subjectsMo.add(s);
+								break;
+							case 1:
+								subjectsTu.add(s);
+								break;
+							case 2:
+								subjectsWe.add(s);
+								break;
+							case 3:
+								subjectsTh.add(s);
+								break;
+							case 4:
+								subjectsFr.add(s);
+								break;
+							case 5:
+								subjectsSa.add(s);
+								break;
+							case 6:
+								subjectsSu.add(s);
+								break;
+							case 7:
+								subjectsOther.add(s);
+								break;
+						}
 					}
-				}
 
-			} else {
-				setEmptySubjectArrayList();
+				} else {
+					setEmptySubjectArrayList();
+				}
 			}
 		} catch (XmlPullParserException | IOException e) {
 			e.printStackTrace();
@@ -182,22 +183,9 @@ public class MainActivity extends AppCompatActivity {
 		String subjectName = ((TextView) ((View) v.getParent().getParent()).findViewById(R.id
 				.subjectTextView)).getText().toString();
 		Intent sylabusIntent = new Intent(this, SylabusActivity.class);
-		sylabusIntent.putExtra("school", school);
 		sylabusIntent.putExtra("personalNumber", personalNumber);
 		sylabusIntent.putExtra("subject", subjectName);
 		startActivity(sylabusIntent);
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (school != null && personalNumber != null) {
-			SharedPreferences settings = getSharedPreferences("config", MODE_PRIVATE);
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putString("school", school);
-			editor.putString("personalNumber", personalNumber);
-			editor.apply();
-		}
 	}
 
 	@Override
@@ -217,7 +205,8 @@ public class MainActivity extends AppCompatActivity {
 		//noinspection SimplifiableIfStatement
 		if (id == R.id.action_settings) {
 			Intent settingsIntent = new Intent(this, SettingsActivity.class);
-			startActivity(settingsIntent);
+			settingsIntent.putExtra("personalNumber", personalNumber);
+			startActivityForResult(settingsIntent, 1);
 			return true;
 		} else if (id == R.id.action_add_timetable) {
 			Intent addTimetableIntent = new Intent(this, AddTimetableActivity.class);
@@ -241,8 +230,20 @@ public class MainActivity extends AppCompatActivity {
 				subjectsSa = data.getParcelableArrayListExtra("subjects5");
 				subjectsSu = data.getParcelableArrayListExtra("subjects6");
 				subjectsOther = data.getParcelableArrayListExtra("subjects7");
-				school = data.getStringExtra("school");
 				personalNumber = data.getStringExtra("personalNumber");
+			}
+		} else if (requestCode == 1) {
+			if (resultCode == RESULT_OK) {
+				subjectsMo = data.getParcelableArrayListExtra("subjects0");
+				subjectsTu = data.getParcelableArrayListExtra("subjects1");
+				subjectsWe = data.getParcelableArrayListExtra("subjects2");
+				subjectsTh = data.getParcelableArrayListExtra("subjects3");
+				subjectsFr = data.getParcelableArrayListExtra("subjects4");
+				subjectsSa = data.getParcelableArrayListExtra("subjects5");
+				subjectsSu = data.getParcelableArrayListExtra("subjects6");
+				subjectsOther = data.getParcelableArrayListExtra("subjects7");
+				personalNumber = data.getStringExtra("personalNumber");
+				semester = data.getStringExtra("semester");
 			}
 		}
 	}

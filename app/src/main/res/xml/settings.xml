@@ -11,5 +11,7 @@
         android:key="semester"
         android:title="@string/semester"
         android:summary="@string/semester_hint"
-        android:defaultValue="null"/>
+        android:defaultValue="null"
+        android:entries="@array/semester_entries"
+        android:entryValues="@array/semester_entry_values"/>
 </PreferenceScreen>

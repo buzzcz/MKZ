@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -31,7 +32,6 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class AddTimetableActivity extends AppCompatActivity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,15 +39,12 @@ public class AddTimetableActivity extends AppCompatActivity {
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 		Spinner schoolSpinner = (Spinner) findViewById(R.id.schoolSpinner);
 		schoolSpinner.setAdapter(new SchoolInSpinnerAdapter(this, R.layout.school_in_spinner,
 				getResources().getStringArray(R.array.schools)));
-
 	}
 
 	private class SchoolInSpinnerAdapter extends ArrayAdapter<String> {
-
 		public SchoolInSpinnerAdapter(Context context, int resource, String[] schools) {
 			super(context, resource, schools);
 		}
@@ -67,9 +64,7 @@ public class AddTimetableActivity extends AppCompatActivity {
 			View row = inflater.inflate(R.layout.school_in_spinner, parent, false);
 			TextView label = (TextView) row.findViewById(R.id.schoolInSpinner);
 			label.setText(getResources().getStringArray(R.array.schools)[position]);
-
 			ImageView icon = (ImageView) row.findViewById(R.id.schoolIcon);
-
 			switch (position) {
 				case 0:
 					icon.setImageResource(R.drawable.zcu);
@@ -120,7 +115,6 @@ public class AddTimetableActivity extends AppCompatActivity {
 					icon.setImageResource(R.drawable.vsrr);
 					break;
 			}
-
 			return row;
 		}
 	}
@@ -137,9 +131,8 @@ public class AddTimetableActivity extends AppCompatActivity {
 	}
 
 	public void addTimetableButtonAction(View v) throws InterruptedException {
-		final String personalNumber = ((EditText) findViewById(R.id.personalNumberEditText))
-				.getText().toString().toUpperCase();
-
+		String personalNumber = ((EditText) findViewById(R.id.personalNumberEditText)).getText()
+				.toString().toUpperCase();
 		if (!personalNumber.trim().isEmpty()) {
 			final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string
 					.downloading_dialog_title), getString(R.string.downloading_dialog_text));
@@ -205,13 +198,13 @@ public class AddTimetableActivity extends AppCompatActivity {
 					prefix = "stag-vsrr";
 					break;
 			}
-			final String dir = getFilesDir().getAbsolutePath() + File.separator + prefix + File
-					.separator + school + File.separator + personalNumber;
-			final String webPage = "https://" + prefix + "." + school + "" +
+			final String webPage = "https://" + prefix + "." + school + "" + "" +
 					".cz/ws/services/rest/";
-			final String timetablePostfix = "rozvrhy/getRozvrhByStudent?osCislo=" +
+			final String timetablePostfix = "rozvrhy/getRozvrhByStudent?osCislo=" + personalNumber;
+			final String finalPersonalNumber = prefix + File.separator + school + File.separator +
 					personalNumber;
-			final String finalSchool = prefix + File.separator + school;
+			final String dir = getFilesDir().getAbsolutePath() + File.separator +
+					finalPersonalNumber;
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -220,20 +213,24 @@ public class AddTimetableActivity extends AppCompatActivity {
 						ArrayList<Subject> timetable = ParseXmls.parseTimetable(new
 								FileInputStream(dir + File.separator + "timetable.xml"));
 						downloadSylabus(dir, webPage, timetable);
-
 						Intent result = new Intent();
 						editTimetable(timetable, result);
-						result.putExtra("school", finalSchool);
-						result.putExtra("personalNumber", personalNumber);
+						result.putExtra("personalNumber", finalPersonalNumber);
 						setResult(RESULT_OK, result);
 
 						SharedPreferences settings = getSharedPreferences("timetables",
 								MODE_PRIVATE);
 						SharedPreferences.Editor editor = settings.edit();
 						String timetables = settings.getString("timetables", null);
-						timetables = timetables != null ? timetables + "," + finalSchool + "/" +
-								personalNumber : finalSchool + "/" + personalNumber;
+						timetables = (timetables != null && !timetables.equals("null")) ?
+								timetables + "," + finalPersonalNumber : finalPersonalNumber;
 						editor.remove("timetables").putString("timetables", timetables);
+						editor.apply();
+						settings = PreferenceManager.getDefaultSharedPreferences
+								(getApplicationContext());
+						editor = settings.edit();
+						editor.remove("personalNumber").putString("personalNumber",
+								finalPersonalNumber);
 						editor.apply();
 
 						dialog.dismiss();
@@ -244,8 +241,7 @@ public class AddTimetableActivity extends AppCompatActivity {
 				}
 			}).start();
 		} else {
-			Toast.makeText(this, getString(R.string.error_no_personal_number), Toast
-					.LENGTH_LONG)
+			Toast.makeText(this, getString(R.string.error_no_personal_number), Toast.LENGTH_LONG)
 					.show();
 		}
 	}
@@ -256,8 +252,7 @@ public class AddTimetableActivity extends AppCompatActivity {
 		connection.connect();
 		InputStream input = new BufferedInputStream(url.openStream());
 		File f = new File(dir, file);
-		if (f.exists())
-			f.delete();
+		if (f.exists()) f.delete();
 		f.getParentFile().mkdirs();
 		FileOutputStream output = new FileOutputStream(f);
 		byte data[] = new byte[1024];
@@ -270,8 +265,7 @@ public class AddTimetableActivity extends AppCompatActivity {
 		input.close();
 	}
 
-	private void downloadSylabus(String dir, String webPage, ArrayList<Subject> timetable)
-			throws
+	private void downloadSylabus(String dir, String webPage, ArrayList<Subject> timetable) throws
 			IOException {
 		for (Subject s : timetable) {
 			String sylabusPostfix = "predmety/getPredmetInfo?katedra=" + s.getDepartment() +
@@ -283,11 +277,9 @@ public class AddTimetableActivity extends AppCompatActivity {
 
 	private void editTimetable(ArrayList<Subject> timetable, Intent result) {
 		Subject.sortTimetable(timetable, getIntent().getStringExtra("semester"));
-
 		ArrayList<String> ch = new ArrayList<>();
 		ch.add("");
 		for (Subject s : timetable) s.setItems(ch);
-
 		ArrayList<Subject> subjects;
 		for (int i = 0; i < 8; i++) {
 			subjects = new ArrayList<>();
