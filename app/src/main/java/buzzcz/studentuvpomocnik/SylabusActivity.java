@@ -30,6 +30,7 @@ public class SylabusActivity extends AppCompatActivity {
 				.loading_dialog_title), getString(R.string.loading_dialog_text));
 		personalNumber = getIntent().getStringExtra("personalNumber");
 		subjectName = getIntent().getStringExtra("subject");
+		setTitle(getTitle() + " " + subjectName);
 		subjectName = subjectName.replace("/", "_");
 
 		new Thread(new Runnable() {

@@ -7,12 +7,12 @@
         android:id="@+id/action_add_timetable"
         android:icon="@drawable/add_timetable"
         android:orderInCategory="1"
-        android:title="@string/action_add_timetable"
+        android:title="@string/add_timetable"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/settings"
         app:showAsAction="never"/>
 
 </menu>

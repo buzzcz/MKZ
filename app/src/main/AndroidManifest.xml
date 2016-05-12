@@ -22,17 +22,18 @@
         </activity>
         <activity
             android:name=".AddTimetableActivity"
-            android:label="@string/action_add_timetable"
+            android:label="@string/add_timetable"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="buzzcz.studentuvpomocnik.MainActivity"/>
         </activity>
-        <activity android:name=".SettingsActivity"
-                  android:label="@string/action_settings"
-                  android:parentActivityName=".MainActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="buzzcz.studentuvpomocnik.MainActivity"/>
@@ -45,6 +46,24 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".TasksActivity"
+            android:label="@string/tasks"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".AddTaskActivity"
+            android:label="@string/add_task"
+            android:parentActivityName=".TasksActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="buzzcz.studentuvpomocnik.TasksActivity"/>
         </activity>
     </application>
 

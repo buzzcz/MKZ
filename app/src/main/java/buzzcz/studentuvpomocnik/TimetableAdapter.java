@@ -91,6 +91,8 @@ public class TimetableAdapter extends BaseExpandableListAdapter {
 					.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.subject_child, null);
 		}
+		Subject s = (Subject) getGroup(groupPosition);
+		convertView.setTag(s.getDepartment() + "/" + s.getShortcut());
 		return convertView;
 	}
 

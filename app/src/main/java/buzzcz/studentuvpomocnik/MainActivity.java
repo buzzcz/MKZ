@@ -15,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -180,12 +179,19 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void showSylabus(View v) {
-		String subjectName = ((TextView) ((View) v.getParent().getParent()).findViewById(R.id
-				.subjectTextView)).getText().toString();
+		String subjectName = (String) ((View) v.getParent()).getTag();
 		Intent sylabusIntent = new Intent(this, SylabusActivity.class);
 		sylabusIntent.putExtra("personalNumber", personalNumber);
 		sylabusIntent.putExtra("subject", subjectName);
 		startActivity(sylabusIntent);
+	}
+
+	public void showTasks(View v) {
+		String subjectName = (String) ((View) v.getParent()).getTag();
+		Intent tasksIntent = new Intent(this, TasksActivity.class);
+		tasksIntent.putExtra("personalNumber", personalNumber);
+		tasksIntent.putExtra("subject", subjectName);
+		startActivity(tasksIntent);
 	}
 
 	@Override

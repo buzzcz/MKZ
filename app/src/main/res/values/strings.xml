@@ -1,8 +1,8 @@
 <resources>
     <!-- General-->
     <string name="app_name">Studentův Pomocník</string>
-    <string name="action_add_timetable">Přidat rozvrh</string>
-    <string name="action_settings">Nastavení</string>
+    <string name="add_timetable">Přidat rozvrh</string>
+    <string name="settings">Nastavení</string>
 
     <!-- Settings-->
     <string name="personal_number_pref">Osobní číslo</string>
@@ -57,12 +57,13 @@
     <string name="loading_dialog_title">Náčítání</string>
     <string name="loading_dialog_text">Počkejte, prosím, načítám data</string>
 
-    <!-- Sylabus-->
+    <!-- Timetable-->
     <string name="sylabus">Sylabus</string>
     <string name="terms">Podmínky</string>
     <string name="tasks">Úkoly</string>
     <string name="absences">Absence</string>
 
+    <!-- Sylabus-->
     <string name="sylabus_shortcut">Zkratka: </string>
     <string name="sylabus_name">Název předmětu: </string>
     <string name="sylabus_credits">Kredity: </string>
@@ -85,5 +86,12 @@
     <string name="sylabus_time_severity">Časová náročnost: </string>
     <string name="sylabus_url">URL: </string>
     <string name="sylabus_languages">Vyučovací jazyky: </string>
+
+    <!-- Tasks-->
+    <string name="add_task">Přidat úkol</string>
+    <string name="task_title">Název:</string>
+    <string name="task_time">Datum a čas:</string>
+    <string name="task_description">Popis:</string>
+    <string name="selectTime">Klikněte pro vybrání data a času</string>
 
 </resources>
