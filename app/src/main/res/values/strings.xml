@@ -42,6 +42,8 @@
     <string name="add_timetable_hint">Zadejte osobní číslo</string>
     <string name="add_timetable_button">Přidat</string>
     <string name="error_no_personal_number">Zadejte osobní číslo!</string>
+    <string name="error_no_connection">Pro stažení rozvrhu se musíte připojit k síti</string>
+    <string name="error_wrong_personal_number">Pro osobní číslo nebyl ve škole nalezen žádný rozvrh</string>
 
     <!-- Days-->
     <string name="mo">Pondělí</string>

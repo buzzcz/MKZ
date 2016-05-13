@@ -100,6 +100,9 @@ public class SettingsActivity extends AppCompatActivity {
 				p.setEntries(personalNumbersEntries.toArray(new CharSequence[0]));
 				p.setEntryValues(personalNumbers);
 				p.setSummary(p.getEntry());
+			} else {
+				p.setEntries(new CharSequence[0]);
+				p.setEntryValues(new CharSequence[0]);
 			}
 
 

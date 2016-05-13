@@ -4,8 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,7 +21,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -130,7 +133,7 @@ public class AddTimetableActivity extends AppCompatActivity {
 		}
 	}
 
-	public void addTimetableButtonAction(View v) throws InterruptedException {
+	public void addTimetableButtonAction(final View v) throws InterruptedException {
 		String personalNumber = ((EditText) findViewById(R.id.personalNumberEditText)).getText()
 				.toString().toUpperCase();
 		if (!personalNumber.trim().isEmpty()) {
@@ -205,44 +208,82 @@ public class AddTimetableActivity extends AppCompatActivity {
 					personalNumber;
 			final String dir = getFilesDir().getAbsolutePath() + File.separator +
 					finalPersonalNumber;
-			new Thread(new Runnable() {
+			new AsyncTask<Object, Object, Integer>() {
+
 				@Override
-				public void run() {
+				protected Integer doInBackground(Object... params) {
 					try {
-						dowloadFile(dir, "timetable.xml", webPage + timetablePostfix);
-						ArrayList<Subject> timetable = ParseXmls.parseTimetable(new
-								FileInputStream(dir + File.separator + "timetable.xml"));
-						downloadSylabus(dir, webPage, timetable);
-						Intent result = new Intent();
-						editTimetable(timetable, result);
-						result.putExtra("personalNumber", finalPersonalNumber);
-						setResult(RESULT_OK, result);
+						NetworkInfo info = ((ConnectivityManager) getSystemService(Context
+								.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+						if (info != null && info.isConnected()) {
+							dowloadFile(dir, "timetable.xml", webPage + timetablePostfix);
+							ArrayList<Subject> timetable = ParseXmls.parseTimetable(new
+									FileInputStream(dir + File.separator + "timetable.xml"));
+							if (timetable.isEmpty()) {
+								File f = new File(dir, "timetable.xml");
+								if (f.exists()) f.delete();
+								cancel(false);
+								return -2;
+							}
+							downloadSylabus(dir, webPage, timetable);
+							Intent result = new Intent();
+							editTimetable(timetable, result);
+							result.putExtra("personalNumber", finalPersonalNumber);
+							setResult(RESULT_OK, result);
 
-						SharedPreferences settings = getSharedPreferences("timetables",
-								MODE_PRIVATE);
-						SharedPreferences.Editor editor = settings.edit();
-						String timetables = settings.getString("timetables", null);
-						timetables = (timetables != null && !timetables.equals("null")) ?
-								timetables + "," + finalPersonalNumber : finalPersonalNumber;
-						editor.remove("timetables").putString("timetables", timetables);
-						editor.apply();
-						settings = PreferenceManager.getDefaultSharedPreferences
-								(getApplicationContext());
-						editor = settings.edit();
-						editor.remove("personalNumber").putString("personalNumber",
-								finalPersonalNumber);
-						editor.apply();
-
-						dialog.dismiss();
-						finish();
+							SharedPreferences settings = getSharedPreferences("timetables",
+									MODE_PRIVATE);
+							SharedPreferences.Editor editor = settings.edit();
+							String timetables = settings.getString("timetables", null);
+							timetables = (timetables != null && !timetables.equals("null")) ?
+									timetables + "," + finalPersonalNumber : finalPersonalNumber;
+							editor.remove("timetables").putString("timetables", timetables);
+							editor.apply();
+							settings = PreferenceManager.getDefaultSharedPreferences
+									(getApplicationContext());
+							editor = settings.edit();
+							editor.remove("personalNumber").putString("personalNumber",
+									finalPersonalNumber);
+							editor.apply();
+						} else {
+							cancel(false);
+							return -1;
+						}
 					} catch (IOException | XmlPullParserException e) {
 						e.printStackTrace();
 					}
+					return 1;
 				}
-			}).start();
+
+				@Override
+				protected void onPostExecute(Integer o) {
+					super.onPostExecute(o);
+					dialog.dismiss();
+					finish();
+				}
+
+				@Override
+				protected void onCancelled(Integer result) {
+					super.onCancelled(result);
+					dialog.dismiss();
+					if (result == -1) {
+						AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+						builder.setMessage(R.string.error_no_connection).setNeutralButton
+								(android.R.string.ok, null);
+						builder.create().show();
+					} else if (result == -2) {
+						AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+						builder.setMessage(R.string.error_wrong_personal_number).setNeutralButton
+								(android.R.string.ok, null);
+						builder.create().show();
+					}
+				}
+			}.execute();
 		} else {
-			Toast.makeText(this, getString(R.string.error_no_personal_number), Toast.LENGTH_LONG)
-					.show();
+			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+			builder.setMessage(R.string.error_no_personal_number).setNeutralButton
+					(android.R.string.ok, null);
+			builder.create().show();
 		}
 	}
 
