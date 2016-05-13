@@ -3,6 +3,8 @@
     <string name="app_name">Studentův Pomocník</string>
     <string name="add_timetable">Přidat rozvrh</string>
     <string name="settings">Nastavení</string>
+    <string name="yes">Ano</string>
+    <string name="no">Ne</string>
 
     <!-- Settings-->
     <string name="personal_number_pref">Osobní číslo</string>
@@ -92,6 +94,7 @@
     <string name="task_title">Název:</string>
     <string name="task_time">Datum a čas:</string>
     <string name="task_description">Popis:</string>
-    <string name="selectTime">Klikněte pro vybrání data a času</string>
+    <string name="select_time">Klikněte pro vybrání data a času</string>
+    <string name="delete_task">Chcete smazat úkol?</string>
 
 </resources>

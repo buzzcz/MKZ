@@ -2,12 +2,14 @@ package buzzcz.studentuvpomocnik;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -47,6 +49,47 @@ public class TasksActivity extends AppCompatActivity {
 		personalNumber = getIntent().getStringExtra("personalNumber");
 		subjectName = getIntent().getStringExtra("subject");
 		setTitle(getTitle() + " " + subjectName);
+
+		ListView tasksListView = (ListView) findViewById(R.id.tasksListView);
+		tasksListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long
+					id) {
+				Intent addTaskIntent = new Intent(view.getContext(), AddTaskActivity.class);
+				addTaskIntent.putExtra("personalNumber", personalNumber);
+				addTaskIntent.putExtra("subject", subjectName);
+				addTaskIntent.putExtra("task", tasks.get(position));
+				startActivity(addTaskIntent);
+			}
+		});
+		tasksListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener
+				() {
+
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, final View view, final int
+					position,
+			                               long id) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+				builder.setMessage(R.string.delete_task)
+						.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								SQLiteDatabase db = (new TasksDatabaseHelper(view.getContext()))
+										.getWritableDatabase();
+								db.delete("tasks", "_id = " + tasks.get(position).getId(), null);
+								db.close();
+								onResume();
+							}
+						})
+						.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+
+							}
+						});
+				builder.create().show();
+				return true;
+			}
+		});
 	}
 
 	@Override
@@ -90,33 +133,6 @@ public class TasksActivity extends AppCompatActivity {
 				super.onPostExecute(o);
 				ListView tasksListView = (ListView) findViewById(R.id.tasksListView);
 				tasksListView.setAdapter(new TaskAdapter(context, R.layout.task_item, tasks));
-				tasksListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view, int position, long
-							id) {
-						Intent addTaskIntent = new Intent(view.getContext(), AddTaskActivity
-								.class);
-						addTaskIntent.putExtra("personalNumber", personalNumber);
-						addTaskIntent.putExtra("subject", subjectName);
-						addTaskIntent.putExtra("task", tasks.get(position));
-						startActivity(addTaskIntent);
-					}
-				});
-				tasksListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener
-						() {
-
-
-					@Override
-					public boolean onItemLongClick(AdapterView<?> parent, View view, int position,
-					                               long id) {
-//						TODO show dialog to confirm delete
-						SQLiteDatabase db = (new TasksDatabaseHelper(context))
-								.getWritableDatabase();
-						db.delete("tasks", "_id = " + tasks.get(position).getId(), null);
-						db.close();
-						return true;
-					}
-				});
 				dialog.dismiss();
 			}
 		}.execute();

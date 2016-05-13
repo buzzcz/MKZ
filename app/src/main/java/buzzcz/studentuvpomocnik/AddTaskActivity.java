@@ -16,7 +16,6 @@ import android.widget.TimePicker;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -36,6 +35,27 @@ public class AddTaskActivity extends AppCompatActivity {
 		subjectName = getIntent().getStringExtra("subject");
 		task = getIntent().getParcelableExtra("task");
 		setTitle(getTitle() + " " + subjectName);
+
+		findViewById(R.id.dateEditText).setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus) {
+					v.performClick();
+				}
+			}
+		});
+		findViewById(R.id.timeEditText).setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus) {
+					v.performClick();
+				}
+			}
+		});
 
 		if (task == null) {
 			EditText dateEditText = (EditText) findViewById(R.id.dateEditText);
@@ -97,7 +117,7 @@ public class AddTaskActivity extends AppCompatActivity {
 				dateEditText.setText(d + "." + m + "." + y);
 			}
 		}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
-		datePicker.getDatePicker().setMinDate(new Date().getTime());
+		datePicker.getDatePicker().setMinDate(c.getTime().getTime());
 		datePicker.show();
 	}
 
@@ -122,7 +142,6 @@ public class AddTaskActivity extends AppCompatActivity {
 	}
 
 	public void addTask(View v) throws ParseException {
-//		TODO check and add task into db
 		if (checkInput()) {
 			if (task == null) {
 				SQLiteDatabase db = (new TasksDatabaseHelper(this)).getWritableDatabase();
