@@ -194,6 +194,22 @@ public class MainActivity extends AppCompatActivity {
 		startActivity(tasksIntent);
 	}
 
+	public void showTerms(View v) {
+		String subjectName = (String) ((View) v.getParent()).getTag();
+		Intent termsIntent = new Intent(this, TermsActivity.class);
+		termsIntent.putExtra("personalNumber", personalNumber);
+		termsIntent.putExtra("subject", subjectName);
+		startActivity(termsIntent);
+	}
+
+	public void showAbsences(View v) {
+		String subjectName = (String) ((View) v.getParent()).getTag();
+		Intent absencesIntent = new Intent(this, AbsencesActivity.class);
+		absencesIntent.putExtra("personalNumber", personalNumber);
+		absencesIntent.putExtra("subject", subjectName);
+		startActivity(absencesIntent);
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

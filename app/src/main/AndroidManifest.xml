@@ -66,6 +66,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="buzzcz.studentuvpomocnik.TasksActivity"/>
         </activity>
+        <activity
+            android:name=".TermsActivity"
+            android:label="@string/terms"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".AddTermActivity"
+            android:label="@string/add_term"
+            android:parentActivityName=".TermsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="buzzcz.studentuvpomocnik.TermsActivity"/>
+        </activity>
+        <activity
+            android:name=".AbsencesActivity"
+            android:label="@string/absences"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

@@ -99,4 +99,14 @@
     <string name="select_time">Klikněte pro vybrání data a času</string>
     <string name="delete_task">Chcete smazat úkol?</string>
 
+    <!-- Terms-->
+    <string name="add_term">Přidat podmínku</string>
+    <string name="term_title">Název:</string>
+    <string name="term_description">Popis:</string>
+    <string name="delete_term">Chcete smazat podmínku?</string>
+
+    <!-- Absences-->
+    <string name="absences_title">Absence (počet hodin):</string>
+    <string name="add_absence">Upravit absence</string>
+
 </resources>

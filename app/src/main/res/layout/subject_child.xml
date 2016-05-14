@@ -15,6 +15,7 @@
         android:id="@+id/termsChildButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="showTerms"
         android:text="@string/terms"/>
 
     <Button
@@ -28,6 +29,7 @@
         android:id="@+id/absencesChildButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="showAbsences"
         android:text="@string/absences"/>
 
 </LinearLayout>
