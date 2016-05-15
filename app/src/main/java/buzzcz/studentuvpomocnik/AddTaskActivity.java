@@ -62,7 +62,7 @@ public class AddTaskActivity extends AppCompatActivity {
 			Calendar c = Calendar.getInstance();
 			String day = c.get(Calendar.DAY_OF_MONTH) + "";
 			if (day.length() == 1) day = "0" + day;
-			String month = c.get(Calendar.MONTH) + "";
+			String month = (c.get(Calendar.MONTH) + 1) + "";
 			if (month.length() == 1) month = "0" + month;
 			String year = c.get(Calendar.YEAR) + "";
 			if (year.length() == 1) year = "0" + year;
@@ -109,8 +109,8 @@ public class AddTaskActivity extends AppCompatActivity {
 				if (year < 10) y = "0" + year;
 				else y = year + "";
 				String m;
-				if (monthOfYear < 10) m = "0" + monthOfYear;
-				else m = monthOfYear + "";
+				if ((monthOfYear + 1) < 10) m = "0" + (monthOfYear + 1);
+				else m = (monthOfYear + 1) + "";
 				String d;
 				if (dayOfMonth < 10) d = "0" + dayOfMonth;
 				else d = dayOfMonth + "";
