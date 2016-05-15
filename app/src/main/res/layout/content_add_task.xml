@@ -88,7 +88,7 @@
             android:text="@string/add_task"
             android:id="@+id/addTaskButton"
             android:layout_gravity="center_horizontal"
-            android:onClick="addTerm"/>
+            android:onClick="addTask"/>
 
     </LinearLayout>
 

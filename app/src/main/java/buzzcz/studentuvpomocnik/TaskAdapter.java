@@ -33,7 +33,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
 		textView.setText(task.getTitle());
 
 		textView = (TextView) convertView.findViewById(R.id.timeTextView);
-		textView.setText(task.getTime());
+		textView.setText(task.getDate() + " " + task.getTime());
 
 		textView = (TextView) convertView.findViewById(R.id.descriptionTextView);
 		textView.setText(task.getDescription());

@@ -235,16 +235,19 @@ public class AddTimetableActivity extends AppCompatActivity {
 									MODE_PRIVATE);
 							SharedPreferences.Editor editor = settings.edit();
 							String timetables = settings.getString("timetables", null);
-							timetables = (timetables != null && !timetables.equals("null")) ?
-									timetables + "," + finalPersonalNumber : finalPersonalNumber;
-							editor.remove("timetables").putString("timetables", timetables);
-							editor.apply();
-							settings = PreferenceManager.getDefaultSharedPreferences
-									(getApplicationContext());
-							editor = settings.edit();
-							editor.remove("personalNumber").putString("personalNumber",
-									finalPersonalNumber);
-							editor.apply();
+							if (timetables != null && !timetables.contains(finalPersonalNumber)) {
+								timetables = !timetables.equals("null") ?
+										timetables + "," + finalPersonalNumber : finalPersonalNumber;
+
+								editor.remove("timetables").putString("timetables", timetables);
+								editor.apply();
+								settings = PreferenceManager.getDefaultSharedPreferences
+										(getApplicationContext());
+								editor = settings.edit();
+								editor.remove("personalNumber").putString("personalNumber",
+										finalPersonalNumber);
+								editor.apply();
+							}
 						} else {
 							cancel(false);
 							return -1;
