@@ -62,7 +62,7 @@ public class AddTaskActivity extends AppCompatActivity {
 			Calendar c = Calendar.getInstance();
 			String day = c.get(Calendar.DAY_OF_MONTH) + "";
 			if (day.length() == 1) day = "0" + day;
-			String month = c.get(Calendar.MONTH) + "";
+			String month = (c.get(Calendar.MONTH) + 1) + "";
 			if (month.length() == 1) month = "0" + month;
 			String year = c.get(Calendar.YEAR) + "";
 			if (year.length() == 1) year = "0" + year;
@@ -109,8 +109,8 @@ public class AddTaskActivity extends AppCompatActivity {
 				if (year < 10) y = "0" + year;
 				else y = year + "";
 				String m;
-				if (monthOfYear < 10) m = "0" + monthOfYear;
-				else m = monthOfYear + "";
+				if ((monthOfYear + 1) < 10) m = "0" + (monthOfYear + 1);
+				else m = (monthOfYear + 1) + "";
 				String d;
 				if (dayOfMonth < 10) d = "0" + dayOfMonth;
 				else d = dayOfMonth + "";
@@ -148,10 +148,13 @@ public class AddTaskActivity extends AppCompatActivity {
 				ContentValues cv = new ContentValues();
 				cv.put("personalNumber", personalNumber);
 				cv.put("subject", subjectName);
-				cv.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new SimpleDateFormat
+				Calendar c = Calendar.getInstance();
+				c.setTime(new SimpleDateFormat
 						("dd.MM.yyyy HH:mm").parse(((EditText) findViewById(R.id.dateEditText))
 						.getText() + " " + ((EditText) findViewById(R.id.timeEditText)).getText
-						())));
+						()));
+				c.add(Calendar.MONTH, 1);
+				cv.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm").format(c.getTime()));
 				cv.put("title", ((EditText) findViewById(R.id.titleEditText)).getText().toString
 						());
 				cv.put("description", ((EditText) findViewById(R.id.descriptionEditText)).getText
