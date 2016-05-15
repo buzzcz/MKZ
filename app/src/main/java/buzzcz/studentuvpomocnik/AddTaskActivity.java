@@ -148,10 +148,13 @@ public class AddTaskActivity extends AppCompatActivity {
 				ContentValues cv = new ContentValues();
 				cv.put("personalNumber", personalNumber);
 				cv.put("subject", subjectName);
-				cv.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new SimpleDateFormat
+				Calendar c = Calendar.getInstance();
+				c.setTime(new SimpleDateFormat
 						("dd.MM.yyyy HH:mm").parse(((EditText) findViewById(R.id.dateEditText))
 						.getText() + " " + ((EditText) findViewById(R.id.timeEditText)).getText
-						())));
+						()));
+				c.add(Calendar.MONTH, 1);
+				cv.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm").format(c.getTime()));
 				cv.put("title", ((EditText) findViewById(R.id.titleEditText)).getText().toString
 						());
 				cv.put("description", ((EditText) findViewById(R.id.descriptionEditText)).getText
