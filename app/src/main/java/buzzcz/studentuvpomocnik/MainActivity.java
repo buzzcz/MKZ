@@ -3,18 +3,23 @@ package buzzcz.studentuvpomocnik;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -56,7 +61,27 @@ public class MainActivity extends AppCompatActivity {
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		toolbar.setLogo(R.drawable.logo);
 		setSupportActionBar(toolbar);
-		// Create the adapter that will return a fragment for each of the three
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+		setupSpinner();
+		Spinner personalNumberSpinner = (Spinner) findViewById(R.id.personalNumberSpinner);
+		personalNumberSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				String personalNumber = getApplicationContext().getSharedPreferences("timetables",
+						MODE_PRIVATE).getString("timetables", null).split(",")[position];
+				PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
+						.remove("personalNumber").putString("personalNumber", personalNumber)
+						.commit();
+				readConfig();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+
+			}
+		});
+		// Create the adapter that will return a fragment for each of the eight
 		// primary sections of the activity.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -70,15 +95,42 @@ public class MainActivity extends AppCompatActivity {
 		showCurrentDay();
 	}
 
+	private void setupSpinner() {
+		Spinner personalNumberSpinner = (Spinner) findViewById(R.id.personalNumberSpinner);
+		String[] personalNumbers = getApplicationContext().getSharedPreferences("timetables",
+				MODE_PRIVATE).getString("timetables", null).split(",");
+		ArrayList<String> personalNumbersEntries = new ArrayList<>();
+		String perNum = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+				.getString("personalNumber", "null");
+		int pos = 0, i = 0;
+		for (String personalNumber : personalNumbers) {
+			personalNumbersEntries.add(personalNumber.split("/")[2]);
+			if (personalNumber.equals(perNum)) pos = i;
+			i++;
+		}
+		ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
+				.simple_spinner_item, personalNumbersEntries);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		personalNumberSpinner.setAdapter(adapter);
+		personalNumberSpinner.setSelection(pos);
+	}
+
 	private void readConfig() {
 		final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string
 				.loading_dialog_title), getString(R.string.loading_dialog_text));
-		new Thread(new Runnable() {
+		new AsyncTask<Object, Object, Object>() {
+
 			@Override
-			public void run() {
+			protected Object doInBackground(Object... params) {
 				loadSubjects(dialog);
+				return null;
 			}
-		}).start();
+
+			@Override
+			protected void onPostExecute(Object o) {
+				if (mViewPager != null) mViewPager.getAdapter().notifyDataSetChanged();
+			}
+		}.execute();
 	}
 
 	private void loadSubjects(ProgressDialog dialog) {
@@ -135,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
 								break;
 						}
 					}
-
 				} else {
 					setEmptySubjectArrayList();
 				}
@@ -282,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
@@ -292,6 +343,12 @@ public class MainActivity extends AppCompatActivity {
 		public Fragment getItem(int position) {
 			// getItem is called to instantiate the fragment for the given page.
 			return DayFragment.newInstance(position);
+		}
+
+		@Override
+		public int getItemPosition(Object object) {
+			((DayFragment) object).onResume();
+			return POSITION_NONE;
 		}
 
 		@Override

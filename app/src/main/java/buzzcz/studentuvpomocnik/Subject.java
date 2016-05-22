@@ -202,11 +202,11 @@ public class Subject implements Parcelable {
 		ArrayList<Subject> toRemove = new ArrayList<>();
 		if (semester.equals("ZS")) {
 			for (Subject s : timetable) {
-				if (s.getSemester().equals("LS")) toRemove.add(s);
+				if (s.getSemester().equals("LS") || s.getType().equals("Zkouška")) toRemove.add(s);
 			}
 		} else {
 			for (Subject s : timetable) {
-				if (s.getSemester().equals("ZS")) toRemove.add(s);
+				if (s.getSemester().equals("ZS") || s.getType().equals("Zkouška")) toRemove.add(s);
 			}
 		}
 		timetable.removeAll(toRemove);
