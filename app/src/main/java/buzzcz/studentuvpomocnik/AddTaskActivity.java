@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -180,9 +181,13 @@ public class AddTaskActivity extends AppCompatActivity {
 	}
 
 	private boolean checkInput() {
-		String s = ((EditText) findViewById(R.id.titleEditText)).getText().toString();
+		View v = findViewById(R.id.titleEditText);
+		String s = ((EditText) v).getText().toString();
 		if (s.trim().isEmpty()) {
-//			TODO open alert - need to input title
+			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+			builder.setMessage(R.string.error_no_task_title).setNeutralButton(android.R.string.ok,
+					null);
+			builder.create().show();
 			return false;
 		}
 

@@ -98,12 +98,14 @@
     <string name="task_description">Popis:</string>
     <string name="select_time">Klikněte pro vybrání data a času</string>
     <string name="delete_task">Chcete smazat úkol?</string>
+    <string name="error_no_task_title">Musíte zadat název úkolu</string>
 
     <!-- Terms-->
     <string name="add_term">Přidat podmínku</string>
     <string name="term_title">Název:</string>
     <string name="term_description">Popis:</string>
     <string name="delete_term">Chcete smazat podmínku?</string>
+    <string name="error_no_term_title">Musíte zadat název podmínky</string>
 
     <!-- Absences-->
     <string name="absences_title">Absence (počet hodin):</string>

@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -201,10 +200,7 @@ public class Subject implements Parcelable {
 
 	public static void sortTimetable(ArrayList<Subject> timetable, String semester) {
 		ArrayList<Subject> toRemove = new ArrayList<>();
-		Calendar now = Calendar.getInstance();
-		Calendar unor = Calendar.getInstance();
-		unor.set(now.get(Calendar.YEAR), 1, 1);
-		if ((semester != null && semester.equals("ZS")) || now.compareTo(unor) == -1) {
+		if (semester.equals("ZS")) {
 			for (Subject s : timetable) {
 				if (s.getSemester().equals("LS")) toRemove.add(s);
 			}

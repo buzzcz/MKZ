@@ -88,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
 					.getString("semester", "null").equals(semester)) {
 				personalNumber = settings.getString("personalNumber", null);
 				semester = settings.getString("semester", null);
+				if (semester == null || semester.equals("null")) {
+					Calendar now = Calendar.getInstance();
+					Calendar unor = Calendar.getInstance();
+					unor.set(now.get(Calendar.YEAR), 1, 1);
+					if (now.compareTo(unor) == -1) semester = "ZS";
+					else semester = "LS";
+					settings.edit().remove("semester").putString("semester", semester).apply();
+				}
 				if (personalNumber != null && !personalNumber.equals("null")) {
 					String dir = getFilesDir().getAbsolutePath() + File.separator + personalNumber;
 					ArrayList<Subject> timetable = ParseXmls.parseTimetable(new FileInputStream
