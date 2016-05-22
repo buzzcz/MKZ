@@ -111,4 +111,9 @@
     <string name="absences_title">Absence (počet hodin):</string>
     <string name="add_absence">Upravit absence</string>
 
+    <!-- Delete-->
+    <string name="delete">Vymazat rozvrhy</string>
+    <string name="delete_timetable">Vyberte rozvrhy, které chcete vymazat</string>
+    <string name="nothing_to_delete">Nenalezen žádný rozvrh k smazání</string>
+
 </resources>

@@ -69,7 +69,7 @@ public class TermsActivity extends AppCompatActivity {
 					position,
 			                               long id) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-				builder.setMessage(R.string.delete_term)
+				builder.setTitle(R.string.delete_term)
 						.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								SQLiteDatabase db = (new TermsDatabaseHelper(view.getContext()))

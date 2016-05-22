@@ -270,12 +270,12 @@ public class AddTimetableActivity extends AppCompatActivity {
 					dialog.dismiss();
 					if (result == -1) {
 						AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-						builder.setMessage(R.string.error_no_connection).setNeutralButton
+						builder.setTitle(R.string.error_no_connection).setNeutralButton
 								(android.R.string.ok, null);
 						builder.create().show();
 					} else if (result == -2) {
 						AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-						builder.setMessage(R.string.error_wrong_personal_number).setNeutralButton
+						builder.setTitle(R.string.error_wrong_personal_number).setNeutralButton
 								(android.R.string.ok, null);
 						builder.create().show();
 					}
@@ -283,7 +283,7 @@ public class AddTimetableActivity extends AppCompatActivity {
 			}.execute();
 		} else {
 			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-			builder.setMessage(R.string.error_no_personal_number).setNeutralButton
+			builder.setTitle(R.string.error_no_personal_number).setNeutralButton
 					(android.R.string.ok, null);
 			builder.create().show();
 		}

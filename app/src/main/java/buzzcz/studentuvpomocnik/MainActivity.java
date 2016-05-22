@@ -1,6 +1,7 @@
 package buzzcz.studentuvpomocnik;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -12,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -27,6 +30,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -97,22 +101,30 @@ public class MainActivity extends AppCompatActivity {
 
 	private void setupSpinner() {
 		Spinner personalNumberSpinner = (Spinner) findViewById(R.id.personalNumberSpinner);
-		String[] personalNumbers = getApplicationContext().getSharedPreferences("timetables",
-				MODE_PRIVATE).getString("timetables", null).split(",");
+		String timetables = getApplicationContext().getSharedPreferences("timetables",
+				MODE_PRIVATE).getString("timetables", null);
 		ArrayList<String> personalNumbersEntries = new ArrayList<>();
-		String perNum = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
-				.getString("personalNumber", "null");
-		int pos = 0, i = 0;
-		for (String personalNumber : personalNumbers) {
-			personalNumbersEntries.add(personalNumber.split("/")[2]);
-			if (personalNumber.equals(perNum)) pos = i;
-			i++;
+		if (timetables != null && !timetables.equals("null")) {
+			String[] personalNumbers = timetables.split(",");
+			String perNum = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+					.getString("personalNumber", "null");
+			int pos = 0, i = 0;
+			for (String personalNumber : personalNumbers) {
+				personalNumbersEntries.add(personalNumber.split("/")[2]);
+				if (personalNumber.equals(perNum)) pos = i;
+				i++;
+			}
+			ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
+					.simple_spinner_item, personalNumbersEntries);
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			personalNumberSpinner.setAdapter(adapter);
+			personalNumberSpinner.setSelection(pos);
+		} else {
+			ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
+					.simple_spinner_item, personalNumbersEntries);
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			personalNumberSpinner.setAdapter(adapter);
 		}
-		ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
-				.simple_spinner_item, personalNumbersEntries);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		personalNumberSpinner.setAdapter(adapter);
-		personalNumberSpinner.setSelection(pos);
 	}
 
 	private void readConfig() {
@@ -136,60 +148,57 @@ public class MainActivity extends AppCompatActivity {
 	private void loadSubjects(ProgressDialog dialog) {
 		try {
 			SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-			if (!settings.getString("personalNumber", "null").equals(personalNumber) || !settings
-					.getString("semester", "null").equals(semester)) {
-				personalNumber = settings.getString("personalNumber", null);
-				semester = settings.getString("semester", null);
-				if (semester == null || semester.equals("null")) {
-					Calendar now = Calendar.getInstance();
-					Calendar unor = Calendar.getInstance();
-					unor.set(now.get(Calendar.YEAR), 1, 1);
-					if (now.compareTo(unor) == -1) semester = "ZS";
-					else semester = "LS";
-					settings.edit().remove("semester").putString("semester", semester).apply();
-				}
-				if (personalNumber != null && !personalNumber.equals("null")) {
-					String dir = getFilesDir().getAbsolutePath() + File.separator + personalNumber;
-					ArrayList<Subject> timetable = ParseXmls.parseTimetable(new FileInputStream
-							(dir + File.separator + "timetable.xml"));
-					Subject.sortTimetable(timetable, semester);
+			personalNumber = settings.getString("personalNumber", null);
+			semester = settings.getString("semester", null);
+			if (semester == null || semester.equals("null")) {
+				Calendar now = Calendar.getInstance();
+				Calendar unor = Calendar.getInstance();
+				unor.set(now.get(Calendar.YEAR), 1, 1);
+				if (now.compareTo(unor) == -1) semester = "ZS";
+				else semester = "LS";
+				settings.edit().remove("semester").putString("semester", semester).apply();
+			}
+			if (personalNumber != null && !personalNumber.equals("null")) {
+				String dir = getFilesDir().getAbsolutePath() + File.separator + personalNumber;
+				ArrayList<Subject> timetable = ParseXmls.parseTimetable(new FileInputStream
+						(dir + File.separator + "timetable.xml"));
+				Subject.sortTimetable(timetable, semester);
 
-					ArrayList<String> ch = new ArrayList<>();
-					ch.add("");
-					for (Subject s : timetable) s.setItems(ch);
+				ArrayList<String> ch = new ArrayList<>();
+				ch.add("");
+				for (Subject s : timetable) s.setItems(ch);
 
-					setEmptySubjectArrayList();
-					for (Subject s : timetable) {
-						switch (s.getDay()) {
-							case 0:
-								subjectsMo.add(s);
-								break;
-							case 1:
-								subjectsTu.add(s);
-								break;
-							case 2:
-								subjectsWe.add(s);
-								break;
-							case 3:
-								subjectsTh.add(s);
-								break;
-							case 4:
-								subjectsFr.add(s);
-								break;
-							case 5:
-								subjectsSa.add(s);
-								break;
-							case 6:
-								subjectsSu.add(s);
-								break;
-							case 7:
-								subjectsOther.add(s);
-								break;
-						}
+				setEmptySubjectArrayList();
+				for (Subject s : timetable) {
+					switch (s.getDay()) {
+						case 0:
+							subjectsMo.add(s);
+							break;
+						case 1:
+							subjectsTu.add(s);
+							break;
+						case 2:
+							subjectsWe.add(s);
+							break;
+						case 3:
+							subjectsTh.add(s);
+							break;
+						case 4:
+							subjectsFr.add(s);
+							break;
+						case 5:
+							subjectsSa.add(s);
+							break;
+						case 6:
+							subjectsSu.add(s);
+							break;
+						case 7:
+							subjectsOther.add(s);
+							break;
 					}
-				} else {
-					setEmptySubjectArrayList();
 				}
+			} else {
+				setEmptySubjectArrayList();
 			}
 		} catch (XmlPullParserException | IOException e) {
 			e.printStackTrace();
@@ -294,9 +303,124 @@ public class MainActivity extends AppCompatActivity {
 			addTimetableIntent.putExtra("semester", semester);
 			startActivityForResult(addTimetableIntent, 0);
 			return true;
+		} else if (id == R.id.action_delete_timetable) {
+			deleteTimetablesDialog();
+			return true;
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void deleteTimetablesDialog() {
+		String tims = getApplicationContext().getSharedPreferences
+				("timetables", MODE_PRIVATE).getString("timetables", null);
+		if (tims != null && !tims.equals("null")) {
+			final String[] personalNumbers = tims.split(",");
+			final ArrayList<String> perNums = new ArrayList<>();
+			for (String s : personalNumbers) {
+				perNums.add(s.split("/")[2]);
+			}
+			boolean checked[] = new boolean[perNums.size()];
+			Arrays.fill(checked, false);
+
+			final ArrayList<Integer> selected = new ArrayList<>();
+			AlertDialog.Builder builder = new AlertDialog.Builder(findViewById(R.id
+					.action_delete_timetable).getContext());
+			builder.setTitle(R.string.delete_timetable).setMultiChoiceItems(perNums.toArray(new
+					CharSequence[0]), checked, new DialogInterface.OnMultiChoiceClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+					if (isChecked) {
+						selected.add(which);
+					} else if (selected.contains(which)) {
+						selected.remove(Integer.valueOf(which));
+					}
+				}
+			}).setNegativeButton(android.R.string.cancel, null).setPositiveButton(android.R.string
+					.ok, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					final ProgressDialog waitDialog = ProgressDialog.show(findViewById(R.id
+							.action_delete_timetable).getContext(), getString(R.string
+							.loading_dialog_title), getString(R.string.loading_dialog_text));
+					new AsyncTask<Object, Object, Object>() {
+
+						private boolean change = false;
+
+						@Override
+						protected Object doInBackground(Object... params) {
+							perNums.clear();
+							for (Integer i : selected) {
+								perNums.add(personalNumbers[i]);
+							}
+
+							SharedPreferences settings = getSharedPreferences("timetables",
+									MODE_PRIVATE);
+							String timetables = settings.getString("timetables", null);
+							for (String s : perNums) {
+								File f = new File(getFilesDir().getAbsolutePath(), s);
+								deleteRecursive(f);
+
+								if (timetables.contains(s + ",")) {
+									timetables = timetables.replace(s + ",", "");
+								} else if (timetables.contains("," + s)) {
+									timetables = timetables.replace("," + s, "");
+								} else if (timetables.contains(s)) {
+									timetables = timetables.replace(s, "");
+								}
+
+								if (s.equals(personalNumber)) change = true;
+							}
+							if (!timetables.trim().isEmpty())
+								settings.edit().remove("timetables").putString("timetables",
+										timetables).commit();
+							else {
+								settings.edit().remove("timetables").putString("timetables",
+										null).commit();
+								timetables = null;
+							}
+							if (change) {
+								if (timetables != null) {
+									personalNumber = timetables.split(",")[0];
+									PreferenceManager.getDefaultSharedPreferences
+											(getApplicationContext()).edit().remove
+											("personalNumber").putString("personalNumber",
+											personalNumber).commit();
+								} else {
+									personalNumber = null;
+									PreferenceManager.getDefaultSharedPreferences
+											(getApplicationContext()).edit().remove
+											("personalNumber").putString("personalNumber",
+											personalNumber).commit();
+								}
+							}
+							return null;
+						}
+
+						@Override
+						protected void onPostExecute(Object o) {
+							waitDialog.dismiss();
+							if (change) readConfig();
+							setupSpinner();
+						}
+					}.execute();
+
+				}
+			});
+			builder.create().show();
+		} else {
+			Toast.makeText(getApplicationContext(), R.string.nothing_to_delete, Toast.LENGTH_LONG)
+					.show();
+		}
+	}
+
+	private void deleteRecursive(File f) {
+		if (f.isDirectory())
+			for (File child : f.listFiles())
+				deleteRecursive(child);
+
+		f.delete();
 	}
 
 	@Override
@@ -312,6 +436,7 @@ public class MainActivity extends AppCompatActivity {
 				subjectsSu = data.getParcelableArrayListExtra("subjects6");
 				subjectsOther = data.getParcelableArrayListExtra("subjects7");
 				personalNumber = data.getStringExtra("personalNumber");
+				setupSpinner();
 			}
 		} else if (requestCode == 1) {
 			if (resultCode == RESULT_OK) {
@@ -325,6 +450,7 @@ public class MainActivity extends AppCompatActivity {
 				subjectsOther = data.getParcelableArrayListExtra("subjects7");
 				personalNumber = data.getStringExtra("personalNumber");
 				semester = data.getStringExtra("semester");
+				setupSpinner();
 			}
 		}
 	}

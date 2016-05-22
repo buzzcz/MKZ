@@ -71,7 +71,7 @@ public class TasksActivity extends AppCompatActivity {
 					position,
 			                               long id) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-				builder.setMessage(R.string.delete_task)
+				builder.setTitle(R.string.delete_task)
 						.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								SQLiteDatabase db = (new TasksDatabaseHelper(view.getContext()))

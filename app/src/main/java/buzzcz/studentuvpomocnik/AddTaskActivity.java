@@ -185,7 +185,7 @@ public class AddTaskActivity extends AppCompatActivity {
 		String s = ((EditText) v).getText().toString();
 		if (s.trim().isEmpty()) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-			builder.setMessage(R.string.error_no_task_title).setNeutralButton(android.R.string.ok,
+			builder.setTitle(R.string.error_no_task_title).setNeutralButton(android.R.string.ok,
 					null);
 			builder.create().show();
 			return false;
