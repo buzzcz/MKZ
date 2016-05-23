@@ -9,7 +9,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context=".AbsencesActivity"
+                tools:context=".absences.AbsencesActivity"
                 tools:showIn="@layout/activity_absences">
 
     <NumberPicker
@@ -24,7 +24,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/absences_title"
-        android:id="@+id/textView2"
         android:layout_above="@+id/absencesPicker"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"/>

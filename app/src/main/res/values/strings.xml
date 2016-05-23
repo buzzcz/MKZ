@@ -62,48 +62,45 @@
     <string name="loading_dialog_text">Počkejte, prosím, načítám data</string>
 
     <!-- Timetable-->
-    <string name="sylabus">Sylabus</string>
+    <string name="syllabus">Sylabus</string>
     <string name="terms">Podmínky</string>
     <string name="tasks">Úkoly</string>
     <string name="absences">Absence</string>
 
-    <!-- Sylabus-->
-    <string name="sylabus_shortcut">Zkratka: </string>
-    <string name="sylabus_name">Název předmětu: </string>
-    <string name="sylabus_credits">Kredity: </string>
-    <string name="sylabus_garants">Garanti: </string>
-    <string name="sylabus_teachers">Vyučující: </string>
-    <string name="sylabus_excercise_teachers">Cvičící: </string>
-    <string name="sylabus_seminar_teachers">Cvičící semináře: </string>
-    <string name="sylabus_conditioning_subjects">Podmiňující předměty: </string>
-    <string name="sylabus_excluding_subjects">Vylučující předměty: </string>
-    <string name="sylabus_is_conditioning_to_subjects">Podmiňuje předměty: </string>
-    <string name="sylabus_literature">Literatura: </string>
-    <string name="sylabus_anotation">Anotace: </string>
-    <string name="sylabus_type_of_exam">Typ zkoušky: </string>
-    <string name="sylabus_credit_before_exam">Zápočet před zkouškou: </string>
-    <string name="sylabus_exam_form">Forma zkoušky: </string>
-    <string name="sylabus_requirements">Požadavky: </string>
-    <string name="sylabus_overview">Přehled látky: </string>
-    <string name="sylabus_prerequisitions">Předpoklady: </string>
-    <string name="sylabus_gain_knowledge">Získané způsobilosti: </string>
-    <string name="sylabus_time_severity">Časová náročnost: </string>
-    <string name="sylabus_url">URL: </string>
-    <string name="sylabus_languages">Vyučovací jazyky: </string>
+    <!-- Syllabus-->
+    <string name="syllabus_shortcut">Zkratka: </string>
+    <string name="syllabus_name">Název předmětu: </string>
+    <string name="syllabus_credits">Kredity: </string>
+    <string name="syllabus_statute">Statut:</string>
+    <string name="syllabus_garants">Garanti: </string>
+    <string name="syllabus_teachers">Vyučující: </string>
+    <string name="syllabus_excercise_teachers">Cvičící: </string>
+    <string name="syllabus_seminar_teachers">Cvičící semináře: </string>
+    <string name="syllabus_conditioning_subjects">Podmiňující předměty: </string>
+    <string name="syllabus_excluding_subjects">Vylučující předměty: </string>
+    <string name="syllabus_is_conditioning_to_subjects">Podmiňuje předměty: </string>
+    <string name="syllabus_literature">Literatura: </string>
+    <string name="syllabus_anotation">Anotace: </string>
+    <string name="syllabus_type_of_exam">Typ zkoušky: </string>
+    <string name="syllabus_credit_before_exam">Zápočet před zkouškou: </string>
+    <string name="syllabus_exam_form">Forma zkoušky: </string>
+    <string name="syllabus_requirements">Požadavky: </string>
+    <string name="syllabus_overview">Přehled látky: </string>
+    <string name="syllabus_prerequisitions">Předpoklady: </string>
+    <string name="syllabus_gain_knowledge">Získané způsobilosti: </string>
+    <string name="syllabus_time_severity">Časová náročnost: </string>
+    <string name="syllabus_url">URL: </string>
+    <string name="syllabus_languages">Vyučovací jazyky: </string>
 
     <!-- Tasks-->
     <string name="add_task">Přidat úkol</string>
-    <string name="task_title">Název:</string>
-    <string name="task_time">Datum a čas:</string>
-    <string name="task_description">Popis:</string>
-    <string name="select_time">Klikněte pro vybrání data a času</string>
+    <string name="task_title">Název</string>
+    <string name="task_description">Popis</string>
     <string name="delete_task">Chcete smazat úkol?</string>
     <string name="error_no_task_title">Musíte zadat název úkolu</string>
 
     <!-- Terms-->
     <string name="add_term">Přidat podmínku</string>
-    <string name="term_title">Název:</string>
-    <string name="term_description">Popis:</string>
     <string name="delete_term">Chcete smazat podmínku?</string>
     <string name="error_no_term_title">Musíte zadat název podmínky</string>
 

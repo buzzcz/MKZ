@@ -5,28 +5,24 @@
               android:orientation="vertical">
 
     <Button
-        android:id="@+id/sylabusChildButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="showSylabus"
-        android:text="@string/sylabus"/>
+        android:onClick="showSyllabus"
+        android:text="@string/syllabus"/>
 
     <Button
-        android:id="@+id/termsChildButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="showTerms"
         android:text="@string/terms"/>
 
     <Button
-        android:id="@+id/tasksChildButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="showTasks"
         android:text="@string/tasks"/>
 
     <Button
-        android:id="@+id/absencesChildButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="showAbsences"

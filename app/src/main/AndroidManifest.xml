@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,76 +21,76 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddTimetableActivity"
+            android:name=".timetables.AddTimetableActivity"
             android:label="@string/add_timetable"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+                android:value=".main.MainActivity"/>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:label="@string/settings"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+                android:value=".main.MainActivity"/>
         </activity>
         <activity
-            android:name=".SylabusActivity"
-            android:label="@string/sylabus"
-            android:parentActivityName=".MainActivity"
+            android:name=".syllabuses.SyllabusActivity"
+            android:label="@string/syllabus"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+                android:value=".main.MainActivity"/>
         </activity>
         <activity
-            android:name=".TasksActivity"
+            android:name=".tasks.TasksActivity"
             android:label="@string/tasks"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+                android:value=".main.MainActivity"/>
         </activity>
         <activity
-            android:name=".AddTaskActivity"
+            android:name=".tasks.AddTaskActivity"
             android:label="@string/add_task"
-            android:parentActivityName=".TasksActivity"
+            android:parentActivityName=".tasks.TasksActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.TasksActivity"/>
+                android:value=".tasks.TasksActivity"/>
         </activity>
         <activity
-            android:name=".TermsActivity"
+            android:name=".terms.TermsActivity"
             android:label="@string/terms"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+                android:value=".main.MainActivity"/>
         </activity>
         <activity
-            android:name=".AddTermActivity"
+            android:name=".terms.AddTermActivity"
             android:label="@string/add_term"
-            android:parentActivityName=".TermsActivity"
+            android:parentActivityName=".terms.TermsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.TermsActivity"/>
+                android:value=".terms.TermsActivity"/>
         </activity>
         <activity
-            android:name=".AbsencesActivity"
+            android:name=".absences.AbsencesActivity"
             android:label="@string/absences"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.MainActivity"/>
+                android:value=".main.MainActivity"/>
         </activity>
     </application>
 
