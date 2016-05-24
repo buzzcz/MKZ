@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * <p>
  * Created by Jaroslav Klaus
  */
-class TermsDatabaseHelper extends SQLiteOpenHelper {
+public class TermsDatabaseHelper extends SQLiteOpenHelper {
 
 	/**
 	 * Constructor for creating helper
@@ -28,7 +28,7 @@ class TermsDatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("DROP TABLE IF EXISTS terms");
+		db.execSQL("DROP TABLE IF EXISTS terms;");
 		onCreate(db);
 	}
 }

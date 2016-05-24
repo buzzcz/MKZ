@@ -1,4 +1,4 @@
-package buzzcz.studentuvpomocnik.settings;
+package buzzcz.studentuvpomocnik;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,9 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import buzzcz.studentuvpomocnik.R;
-import buzzcz.studentuvpomocnik.timetables.Subject;
-import buzzcz.studentuvpomocnik.tools.ParseXmls;
+import buzzcz.studentuvpomocnik.subjects.Subject;
 
 /**
  * Activity with settings. It allows users to change timetables and semesters to show

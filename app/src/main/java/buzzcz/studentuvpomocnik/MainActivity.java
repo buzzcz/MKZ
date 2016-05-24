@@ -1,9 +1,11 @@
-package buzzcz.studentuvpomocnik.main;
+package buzzcz.studentuvpomocnik;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -32,16 +34,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
-import buzzcz.studentuvpomocnik.R;
-import buzzcz.studentuvpomocnik.about.AboutActivity;
-import buzzcz.studentuvpomocnik.absences.AbsencesActivity;
-import buzzcz.studentuvpomocnik.settings.SettingsActivity;
+import buzzcz.studentuvpomocnik.subjects.AddTimetableActivity;
+import buzzcz.studentuvpomocnik.subjects.Subject;
 import buzzcz.studentuvpomocnik.syllabuses.SyllabusActivity;
 import buzzcz.studentuvpomocnik.tasks.TasksActivity;
+import buzzcz.studentuvpomocnik.tasks.TasksDatabaseHelper;
 import buzzcz.studentuvpomocnik.terms.TermsActivity;
-import buzzcz.studentuvpomocnik.timetables.AddTimetableActivity;
-import buzzcz.studentuvpomocnik.timetables.Subject;
-import buzzcz.studentuvpomocnik.tools.ParseXmls;
+import buzzcz.studentuvpomocnik.terms.TermsDatabaseHelper;
 
 /**
  * Main class for showing subjects in expandable list views
@@ -406,6 +405,7 @@ public class MainActivity extends AppCompatActivity {
 
 			// List containing indexes of selected personal numbers
 			final ArrayList<Integer> selected = new ArrayList<>();
+			final Context context = getApplicationContext();
 			AlertDialog.Builder builder = new AlertDialog.Builder(findViewById(R.id
 					.action_delete_timetable).getContext());
 			builder.setTitle(R.string.delete_timetable).setMultiChoiceItems(perNums.toArray(new
@@ -448,6 +448,15 @@ public class MainActivity extends AppCompatActivity {
 							for (String s : perNums) {
 								File f = new File(getFilesDir().getAbsolutePath(), s);
 								deleteRecursive(f);
+								SQLiteDatabase db = (new TermsDatabaseHelper(context))
+										.getWritableDatabase();
+								db.delete("terms", "personalNumber = \"" + s + "\"", null);
+								db.close();
+
+								db = (new TasksDatabaseHelper(context))
+										.getWritableDatabase();
+								db.delete("tasks", "personalNumber = \"" + s + "\"", null);
+								db.close();
 
 								if (timetables.contains(s + ",")) {
 									timetables = timetables.replace(s + ",", "");

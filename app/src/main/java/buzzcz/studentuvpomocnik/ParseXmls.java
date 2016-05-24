@@ -1,4 +1,4 @@
-package buzzcz.studentuvpomocnik.tools;
+package buzzcz.studentuvpomocnik;
 
 import android.util.Xml;
 
@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import buzzcz.studentuvpomocnik.subjects.Subject;
 import buzzcz.studentuvpomocnik.syllabuses.Syllabus;
-import buzzcz.studentuvpomocnik.timetables.Subject;
 
 /**
  * Timetable and syllabus XML files parser

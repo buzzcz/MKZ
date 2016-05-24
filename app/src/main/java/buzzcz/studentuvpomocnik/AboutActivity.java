@@ -1,11 +1,9 @@
-package buzzcz.studentuvpomocnik.about;
+package buzzcz.studentuvpomocnik;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
-import buzzcz.studentuvpomocnik.R;
 
 public class AboutActivity extends AppCompatActivity {
 

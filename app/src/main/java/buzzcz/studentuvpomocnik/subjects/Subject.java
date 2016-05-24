@@ -1,4 +1,4 @@
-package buzzcz.studentuvpomocnik.timetables;
+package buzzcz.studentuvpomocnik.subjects;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package buzzcz.studentuvpomocnik.absences;
+package buzzcz.studentuvpomocnik;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,8 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.NumberPicker;
-
-import buzzcz.studentuvpomocnik.R;
 
 /**
  * Class for showing and editing absences of a subject

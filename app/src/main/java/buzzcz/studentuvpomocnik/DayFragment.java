@@ -1,4 +1,4 @@
-package buzzcz.studentuvpomocnik.main;
+package buzzcz.studentuvpomocnik;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-
-import buzzcz.studentuvpomocnik.R;
-import buzzcz.studentuvpomocnik.timetables.TimetableAdapter;
 
 /**
  * A placeholder fragment containing expandable list view

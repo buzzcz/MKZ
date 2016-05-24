@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * <p>
  * Created by Jaroslav Klaus
  */
-class TasksDatabaseHelper extends SQLiteOpenHelper {
+public class TasksDatabaseHelper extends SQLiteOpenHelper {
 
 	/**
 	 * Constructor for creating helper
@@ -28,7 +28,7 @@ class TasksDatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("DROP TABLE IF EXISTS tasks");
+		db.execSQL("DROP TABLE IF EXISTS tasks;");
 		onCreate(db);
 	}
 }

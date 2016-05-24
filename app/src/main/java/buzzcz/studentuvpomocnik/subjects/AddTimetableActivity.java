@@ -1,4 +1,4 @@
-package buzzcz.studentuvpomocnik.timetables;
+package buzzcz.studentuvpomocnik.subjects;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -34,8 +34,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import buzzcz.studentuvpomocnik.ParseXmls;
 import buzzcz.studentuvpomocnik.R;
-import buzzcz.studentuvpomocnik.tools.ParseXmls;
 
 /**
  * Activity for adding timetables

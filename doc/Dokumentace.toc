@@ -1,7 +1,14 @@
 \select@language {czech}
 \contentsline {section}{\numberline {1}Zad\IeC {\'a}n\IeC {\'\i }}{2}{section.1}
 \contentsline {section}{\numberline {2}Program\IeC {\'a}torsk\IeC {\'a} dokumentace}{2}{section.2}
-\contentsline {section}{\numberline {3}U\IeC {\v z}ivatelsk\IeC {\'a} dokumentace}{2}{section.3}
-\contentsline {section}{\numberline {4}\IeC {\v R}e\IeC {\v s}en\IeC {\'e} probl\IeC {\'e}my}{2}{section.4}
-\contentsline {section}{\numberline {5}Testov\IeC {\'a}n\IeC {\'\i }}{2}{section.5}
-\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{2}{section.6}
+\contentsline {subsection}{\numberline {2.1}Ulo\IeC {\v z}en\IeC {\'\i } dat}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Hlavn\IeC {\'\i } obrazovka}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}P\IeC {\v r}id\IeC {\'a}n\IeC {\'\i } rozvrhu}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Odebr\IeC {\'a}n\IeC {\'\i } rozvrhu}{3}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Nastaven\IeC {\'\i }}{3}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Zobrazen\IeC {\'\i } sylabu}{3}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Podm\IeC {\'\i }nky}{4}{subsection.2.7}
+\contentsline {section}{\numberline {3}U\IeC {\v z}ivatelsk\IeC {\'a} dokumentace}{4}{section.3}
+\contentsline {section}{\numberline {4}\IeC {\v R}e\IeC {\v s}en\IeC {\'e} probl\IeC {\'e}my}{4}{section.4}
+\contentsline {section}{\numberline {5}Testov\IeC {\'a}n\IeC {\'\i }}{4}{section.5}
+\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{4}{section.6}

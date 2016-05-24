@@ -1,4 +1,4 @@
-package buzzcz.studentuvpomocnik.timetables;
+package buzzcz.studentuvpomocnik;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import buzzcz.studentuvpomocnik.R;
+import buzzcz.studentuvpomocnik.subjects.Subject;
 
 /**
  * Adapter for subjects shown in expandable list view

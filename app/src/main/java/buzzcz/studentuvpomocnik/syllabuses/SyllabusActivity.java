@@ -14,8 +14,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import buzzcz.studentuvpomocnik.ParseXmls;
 import buzzcz.studentuvpomocnik.R;
-import buzzcz.studentuvpomocnik.tools.ParseXmls;
 
 /**
  * Activity showing syllabus of a subject

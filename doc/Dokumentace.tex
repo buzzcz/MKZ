@@ -48,7 +48,46 @@
 		\end{itemize}
 	
 	\section{Programátorská dokumentace}
-	
+		\subsection{Uložení dat}
+		Data jako rozvrhy a~sylaby předmětů jsou uloženy v~XML souborech ve složkách strukturou vycházející z~webové adresy, ze které byly získány, a~osobního čísla rozvrhu. Pro jejich čtení a~parsování byla vytvořena třída \emph{ParseXmls}, která využívá třídu \emph{XmlPullParser}.
+		
+		Konfigurační položky a~záznamy o~tom, jaké rozvrhy jsou dostupné, jsou uloženy ve~sdílených preferenčních souborech. To jsou typicky také XML soubory, ale o~jejich čtení a~ukládání se stará poskytované Android API.
+		
+		Data o~podmínkách a~úkolech se uchovávají v~databázi v~příslušných tabulkách. K~manipulaci s~nimi jsou vytvořené třídy \emph{TasksDatabaseHelper} a~\emph{TermsDatabaseHelper} odděděné od \emph{SQLiteOpenHelper}.
+		
+		Veškerá práce s~daty a~jiné eventuálně časově náročné akce jsou prováděny v~jiných vláknech pomocí třídy \emph{AsyncTask}.
+		
+		\subsection{Hlavní obrazovka}
+		Hlavní obrazovka \emph{MainActivity} zobrazuje předměty po jednotlivých dnech, proto byla implementována pomocí \emph{Tabbed Activity} s~volbou \emph{Action Bar Tabs (with ViewPager)}. Základem jsou tedy \uv{záložky} se dny zobrazující fragmenty, o~jejichž změnu se stará třída \emph{ViewPager} a~její adaptér odděděný od třídy \emph{FragmentStatePagerAdapter}.
+		
+		Tento adaptér vytváří fragment \emph{DayFragment}, který v~prvku \emph{ExpandableListView} zobrazuje rozvrh pro daný den. Pro to je však potřeba další adaptér (\emph{BaseExpandableListAdapter}), který je použit pro zobrazení údajů o~předmětu v~prvku \emph{ExpandableListView}.
+		
+		Při vytvoření aplikace se z~konfiguračních souborů zjistí poslední nastavení a~podle toho se načte příslušný rozvrh do struktur. Poté se naplní prvek \emph{Spinner} dostupnými staženými rozvrhy. Tento prvek slouží ke změně zobrazovaného rozvrhu.
+		
+		\subsection{Přidání rozvrhu}
+		Aktivita pro přidání rozvrhu \emph{AddTimetableActivity} je základní aktivita vytvořená jako \emph{Basic Activity}. Obsahuje tři prvky: \emph{Spinner}, \emph{EditText} a~\emph{Button}.
+		
+		\emph{Spinner} slouží pro výběr školy a~je pro něj vytvořen adaptér pomocí \emph{ArrayAdapter\textless String\textgreater}, který umožňuje nejen zobrazení názvu školy, ale i~jejího loga.
+		
+		\emph{EditText} je vstupní pole sloužící pro zadání osobního čísla studenta, jehož rozvrh má být přidán.
+		
+		\emph{Button} je tlačítko, které slouží pro zahájení akce přidání nového rozvrhu.
+		
+		Pro stahování souborů se využívá tříd \emph{URL}, \emph{URLConnection}, \emph{BufferedInputStream} a~\emph{FileOutputStream}.
+		
+		\subsection{Odebrání rozvrhu}
+		Pro odebrání rozvrhů se využívá třídy \emph{AlertDialog.Builder}, pomocí které se vytvoří dialog se zatrhávacími políčky u~osobních čísel (metodou \emph{setMultiChoiceItems}). Vybrané položky se poté vymažou.
+		
+		\subsection{Nastavení}
+		Aktivita nastavení \emph{SettingsActivity} obsahuje pouze dvě položky, a~to pro změnu osobního čísla a~semestru. Obě položky jsou realizovány pomocí prvku \emph{ListPreference}.
+		
+		\subsection{Zobrazení sylabu}
+		Aktivita pro zobrazení sylabu předmětu je vytvořena jako \emph{Basic Activity}. Obsahuje pouze prvky \emph{TextView}, které slouží pro zobrazení příslušných informací o~předmětu.
+		
+		\subsection{Podmínky}
+		Aktivita pro zobrazení podmínek \emph{TasksActivity} je upravená \emph{Basic Activity} která v~prvku \emph{ListView} zobrazuje podmínky načtené z~databáze. Využívá k~tomu adaptér typu \emph{ArrayAdapter\textless Term\textgreater}, který slouží k~vytvoření a~nastavení hodnot zobrazovaných prvků.
+		
+		Pro vytvoření nového prvku je použito tlačítko \emph{FloatingActionButton}, které spustí aktivitu \emph{AddTermActivity}. Stejná aktivita se spustí pro úpravu existující podmínky a to tak, že se na danou podmínku klikne.
 	
 	\section{Uživatelská dokumentace}
 	

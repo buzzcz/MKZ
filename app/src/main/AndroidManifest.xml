@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,40 +21,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".timetables.AddTimetableActivity"
+            android:name=".subjects.AddTimetableActivity"
             android:label="@string/add_timetable"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity"/>
+                android:value=".MainActivity"/>
         </activity>
         <activity
-            android:name=".settings.SettingsActivity"
+            android:name=".SettingsActivity"
             android:label="@string/settings"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity"/>
+                android:value=".MainActivity"/>
         </activity>
         <activity
             android:name=".syllabuses.SyllabusActivity"
             android:label="@string/syllabus"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity"/>
+                android:value=".MainActivity"/>
         </activity>
         <activity
             android:name=".tasks.TasksActivity"
             android:label="@string/tasks"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity"/>
+                android:value=".MainActivity"/>
         </activity>
         <activity
             android:name=".tasks.AddTaskActivity"
@@ -68,11 +68,11 @@
         <activity
             android:name=".terms.TermsActivity"
             android:label="@string/terms"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity"/>
+                android:value=".MainActivity"/>
         </activity>
         <activity
             android:name=".terms.AddTermActivity"
@@ -84,22 +84,22 @@
                 android:value=".terms.TermsActivity"/>
         </activity>
         <activity
-            android:name=".absences.AbsencesActivity"
+            android:name=".AbsencesActivity"
             android:label="@string/absences"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity"/>
+                android:value=".MainActivity"/>
         </activity>
         <activity
-            android:name=".about.AboutActivity"
+            android:name=".AboutActivity"
             android:label="@string/about"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="buzzcz.studentuvpomocnik.main.MainActivity"/>
+                android:value=".MainActivity"/>
         </activity>
     </application>
 
