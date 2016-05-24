@@ -113,4 +113,8 @@
     <string name="delete_timetable">Vyberte rozvrhy, které chcete vymazat</string>
     <string name="nothing_to_delete">Nenalezen žádný rozvrh k smazání</string>
 
+    <!-- About-->
+    <string name="about">O aplikaci</string>
+    <string name="about_description">Tato aplikace vznikla jako semestrální práce předmětu KIV/MKZ na Západočeské univerzitě v Plzni. Účelem bylo vytvořit užitečnou aplikaci pro studenty, která by jim dovolila jednoduše a přehledně organizovat požadavky a úkoly v jednotlivých předmětech.</string>
+
 </resources>

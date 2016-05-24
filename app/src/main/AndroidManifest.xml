@@ -92,6 +92,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".main.MainActivity"/>
         </activity>
+        <activity
+            android:name=".about.AboutActivity"
+            android:label="@string/about"
+            android:parentActivityName=".main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="buzzcz.studentuvpomocnik.main.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

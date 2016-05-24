@@ -33,6 +33,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 import buzzcz.studentuvpomocnik.R;
+import buzzcz.studentuvpomocnik.about.AboutActivity;
 import buzzcz.studentuvpomocnik.absences.AbsencesActivity;
 import buzzcz.studentuvpomocnik.settings.SettingsActivity;
 import buzzcz.studentuvpomocnik.syllabuses.SyllabusActivity;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		toolbar.setLogo(R.drawable.logo);
+		toolbar.setLogo(R.drawable.logo_transparent);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -375,6 +376,10 @@ public class MainActivity extends AppCompatActivity {
 			return true;
 		} else if (id == R.id.action_delete_timetable) {
 			deleteTimetablesDialog();
+			return true;
+		} else if (id == R.id.action_about) {
+			Intent aboutIntent = new Intent(this, AboutActivity.class);
+			startActivity(aboutIntent);
 			return true;
 		}
 
