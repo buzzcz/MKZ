@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.30)  24 MAY 2016 20:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.30)  27 MAY 2016 11:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -531,27 +531,35 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \c@ContinuedFloat=\count100
 Package caption Info: hyperref package is loaded.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
+\c@subfigure=\count101
+\c@subtable=\count102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
 (./Dokumentace.aux)
 \openout1 = `Dokumentace.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
 \AtBeginShipoutBox=\box26
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
@@ -560,7 +568,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 143.
 )
-Package hyperref Info: Link coloring ON on input line 20.
+Package hyperref Info: Link coloring ON on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -568,11 +576,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count101
+\c@section@level=\count103
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 21.
+LaTeX Info: Redefining \pageref on input line 21.
+LaTeX Info: Redefining \nameref on input line 21.
 
 (./Dokumentace.out) (./Dokumentace.out)
 \@outlinefile=\write3
@@ -581,16 +589,16 @@ LaTeX Info: Redefining \nameref on input line 20.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count102
+\scratchcounter=\count104
 \scratchdimen=\dimen117
 \scratchbox=\box27
-\nofMPsegments=\count103
-\nofMParguments=\count104
+\nofMPsegments=\count105
+\nofMParguments=\count106
 \everyMPshowfont=\toks17
-\MPscratchCnt=\count105
+\MPscratchCnt=\count107
 \MPscratchDim=\dimen118
-\MPnumerator=\count106
-\makeMPintoPDFobject=\count107
+\MPnumerator=\count108
+\makeMPintoPDFobject=\count109
 \everyMPtoPDFconversion=\toks18
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -610,10 +618,10 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
-<img/ZCULogo.pdf, id=56, 110.82945pt x 56.9056pt>
+<img/ZCULogo.pdf, id=128, 110.82945pt x 56.9056pt>
 File: img/ZCULogo.pdf Graphic file (type pdf)
  <use img/ZCULogo.pdf>
-Package pdftex.def Info: img/ZCULogo.pdf used on input line 23.
+Package pdftex.def Info: img/ZCULogo.pdf used on input line 24.
 (pdftex.def)             Requested size: 110.82916pt x 56.90544pt.
 
 [1
@@ -634,54 +642,230 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.37 	\newpage
+l.38 	\newpage
                [1]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 44.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 45.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 44.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
+LaTeX Font Info:    Try loading font information for IL2+cmtt on input line 53.
+
+
+(/usr/share/texlive/texmf-dist/tex/cslatex/base/il2cmtt.fd
+File: il2cmtt.fd 1997/08/20 CSLaTeX font definitions
+)
+Overfull \hbox (1.40991pt too wide) in paragraph at lines 64--65
+[]\IL2/cmr/m/n/12 Tento adap-tér vy-tváøí frag-ment \IL2/cmtt/m/n/12 DayFragmen
+t\IL2/cmr/m/n/12 , který v prvku \IL2/cmtt/m/n/12 Expandable- 
+ []
 
 [2]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 70.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 70.
- [3] [4]
+LaTeX Font Info:    Try loading font information for OML+cmtt on input line 71.
 
-LaTeX Warning: Empty `thebibliography' environment on input line 104.
+LaTeX Font Info:    No file OMLcmtt.fd. on input line 71.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 106.
-[5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 106.
+
+LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
+(Font)              using `OML/cmm/m/it' instead
+(Font)              for symbol `textless' on input line 71.
+
+
+Overfull \hbox (2.33958pt too wide) in paragraph at lines 80--81
+\IL2/cmr/m/n/12 se vy-tvoøí di-a-log se za-tr-há-va-cími po-líèky u osob-ních è
+í-sel (me-to-dou \IL2/cmtt/m/n/12 setMulti- 
+ []
+
+[3] <img/mainWithoutTimetable.png, id=194, 1084.05pt x 1927.2pt>
+File: img/mainWithoutTimetable.png Graphic file (type png)
+
+<use img/mainWithoutTimetable.png>
+Package pdftex.def Info: img/mainWithoutTimetable.png used on input line 116.
+(pdftex.def)             Requested size: 184.9429pt x 328.76653pt.
+
+<img/mainWithTimetable.png, id=196, 1084.05pt x 1927.2pt>
+File: img/mainWithTimetable.png Graphic file (type png)
+
+<use img/mainWithTimetable.png>
+Package pdftex.def Info: img/mainWithTimetable.png used on input line 122.
+(pdftex.def)             Requested size: 184.9429pt x 328.76653pt.
+
+<img/personalNumbers.png, id=197, 1081.03876pt x 480.79625pt>
+File: img/personalNumbers.png Graphic file (type png)
+
+<use img/personalNumbers.png>
+Package pdftex.def Info: img/personalNumbers.png used on input line 128.
+(pdftex.def)             Requested size: 184.9429pt x 82.24782pt.
+ <img/menu.png, id=198, 1082.0425pt x 481.8pt>
+File: img/menu.png Graphic file (type png)
+
+<use img/menu.png>
+Package pdftex.def Info: img/menu.png used on input line 134.
+(pdftex.def)             Requested size: 184.9429pt x 82.34601pt.
+ [4]
+<img/subjectActions.png, id=205, 1084.05pt x 1336.995pt>
+File: img/subjectActions.png Graphic file (type png)
+
+<use img/subjectActions.png>
+Package pdftex.def Info: img/subjectActions.png used on input line 144.
+(pdftex.def)             Requested size: 184.9429pt x 228.08177pt.
+ [5 <./img/mainWithoutTimetable.png> <./img/mainWithTimetable.png> <./img/perso
+nalNumbers.png> <./img/menu.png>]
+<img/addTimetable.png, id=217, 1084.05pt x 685.56125pt>
+File: img/addTimetable.png Graphic file (type png)
+
+<use img/addTimetable.png>
+Package pdftex.def Info: img/addTimetable.png used on input line 155.
+(pdftex.def)             Requested size: 184.9429pt x 116.95183pt.
+ [6 <./img/subjectActions.png> <./img/addTimetable.png>] <img/deleteTimetables.
+png, id=227, 992.70876pt x 699.61375pt>
+File: img/deleteTimetables.png Graphic file (type png)
+
+<use img/deleteTimetables.png>
+Package pdftex.def Info: img/deleteTimetables.png used on input line 166.
+(pdftex.def)             Requested size: 184.9429pt x 130.33391pt.
+
+<img/settings.png, id=229, 1082.0425pt x 590.205pt>
+File: img/settings.png Graphic file (type png)
+ <use img/settings.png>
+Package pdftex.def Info: img/settings.png used on input line 177.
+(pdftex.def)             Requested size: 184.9429pt x 100.87386pt.
+
+<img/about.png, id=231, 1082.0425pt x 869.2475pt>
+File: img/about.png Graphic file (type png)
+ <use img/about.png>
+Package pdftex.def Info: img/about.png used on input line 188.
+(pdftex.def)             Requested size: 184.9429pt x 148.56593pt.
+ [7 <./img/deleteTimetables.png> <./img/settings.png>]
+<img/syllabus.png, id=242, 1084.05pt x 1559.8275pt>
+File: img/syllabus.png Graphic file (type png)
+ <use img/syllabus.png>
+Package pdftex.def Info: img/syllabus.png used on input line 199.
+(pdftex.def)             Requested size: 184.9429pt x 266.09541pt.
+
+[8 <./img/about.png> <./img/syllabus.png>]
+<img/terms.png, id=253, 1081.03876pt x 750.805pt>
+File: img/terms.png Graphic file (type png)
+ <use img/terms.png>
+Package pdftex.def Info: img/terms.png used on input line 223.
+(pdftex.def)             Requested size: 184.9429pt x 128.4371pt.
+
+<img/addTerm.png, id=254, 1081.03876pt x 786.94pt>
+File: img/addTerm.png Graphic file (type png)
+ <use img/addTerm.png>
+Package pdftex.def Info: img/addTerm.png used on input line 229.
+(pdftex.def)             Requested size: 184.9429pt x 134.61856pt.
+
+<img/deleteTerm.png, id=255, 960.58875pt x 334.24875pt>
+File: img/deleteTerm.png Graphic file (type png)
+
+<use img/deleteTerm.png>
+Package pdftex.def Info: img/deleteTerm.png used on input line 235.
+(pdftex.def)             Requested size: 184.9429pt x 64.34946pt.
+ [9] [10 <./img/terms.png> <./img/addTerm.png> <./img/deleteTerm.png>] <img/tas
+ks.png, id=274, 1084.05pt x 937.5025pt>
+File: img/tasks.png Graphic file (type png)
+
+<use img/tasks.png>
+Package pdftex.def Info: img/tasks.png used on input line 260.
+(pdftex.def)             Requested size: 184.9429pt x 159.93121pt.
+ <img/addTask.png, id=275, 1081.03876pt x 932.48375pt>
+File: img/addTask.png Graphic file (type png)
+
+<use img/addTask.png>
+Package pdftex.def Info: img/addTask.png used on input line 266.
+(pdftex.def)             Requested size: 184.9429pt x 159.51613pt.
+ <img/dateDialog.png, id=276, 869.2475pt x 1209.51875pt>
+File: img/dateDialog.png Graphic file (type png)
+
+<use img/dateDialog.png>
+Package pdftex.def Info: img/dateDialog.png used on input line 272.
+(pdftex.def)             Requested size: 184.9429pt x 257.32846pt.
+
+<img/timeDialog.png, id=277, 872.25874pt x 1186.4325pt>
+File: img/timeDialog.png Graphic file (type png)
+
+<use img/timeDialog.png>
+Package pdftex.def Info: img/timeDialog.png used on input line 278.
+(pdftex.def)             Requested size: 184.9429pt x 251.54784pt.
+ <img/deleteTask.png, id=278, 959.585pt x 331.2375pt>
+File: img/deleteTask.png Graphic file (type png)
+
+<use img/deleteTask.png>
+Package pdftex.def Info: img/deleteTask.png used on input line 284.
+(pdftex.def)             Requested size: 184.9429pt x 63.83543pt.
+ [11]
+
+LaTeX Warning: Text page 12 contains only floats.
+
+
+Overfull \vbox (2.39507pt too high) has occurred while \output is active []
+
+
+[12 <./img/tasks.png> <./img/addTask.png> <./img/dateDialog.png> <./img/timeDia
+log.png> <./img/deleteTask.png>]
+<img/absences.png, id=294, 1081.03876pt x 1198.4775pt>
+File: img/absences.png Graphic file (type png)
+ <use img/absences.png>
+Package pdftex.def Info: img/absences.png used on input line 296.
+(pdftex.def)             Requested size: 184.9429pt x 205.01859pt.
+
+[13 <./img/absences.png>] [14] [15]
+Underfull \hbox (badness 2042) in paragraph at lines 335--340
+[]\IL2/cmr/m/n/12 Ing. La-di-slav Pe¹ièka, Mo-bilní ko-mu-ni-kace a za-øí-zení,
+ Pøed-ná¹ky,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--340
+\IL2/cmr/m/n/12 2016, [][]$\IL2/cmtt/m/n/12 https : / / cw . zcu . cz / portal 
+/ studium / courseware / kiv / mkz /
+ []
+
+
+Underfull \hbox (badness 1173) in paragraph at lines 342--346
+[]\IL2/cmr/m/n/12 Google Inc., API Gu-i-des, 2016, [][]$\IL2/cmtt/m/n/12 https 
+: / / developer . android . com /
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 348.
+[16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 348.
  (./Dokumentace.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 106.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 106.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 348.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 348.
 Package rerunfilecheck Info: File `Dokumentace.out' has not changed.
-(rerunfilecheck)             Checksum: 59D2035AF2F7818CE01270072B3AB17E;1622.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 106.
+(rerunfilecheck)             Checksum: 3ED6FE1E1B097D5541F98AC3B141473F;3961.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 348.
  ) 
 Here is how much of TeX's memory you used:
- 10469 strings out of 494919
- 148233 string characters out of 6179680
- 216344 words of memory out of 5000000
- 13666 multiletter control sequences out of 15000+600000
- 13284 words of font info for 35 fonts, out of 8000000 for 9000
+ 10748 strings out of 494919
+ 153193 string characters out of 6179680
+ 221761 words of memory out of 5000000
+ 13871 multiletter control sequences out of 15000+600000
+ 14151 words of font info for 37 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 36i,5n,38p,421b,390s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,8n,39p,617b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/cs/csbx12.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/cs/cscsc10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/cs/csr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cs/cs
-r17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cs/csti12.pfb>
-Output written on Dokumentace.pdf (6 pages, 80981 bytes).
+pe1/public/cs/csr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cs/cs
+r12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cs/csr17.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/cs/csti12.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/cs/cstt12.pfb>
+Output written on Dokumentace.pdf (17 pages, 1033428 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
- 110 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 370 PDF objects out of 1000 (max. 8388607)
+ 299 compressed objects within 3 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 349 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -7,8 +7,26 @@
 \contentsline {subsection}{\numberline {2.4}Odebr\IeC {\'a}n\IeC {\'\i } rozvrhu}{3}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Nastaven\IeC {\'\i }}{3}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}Zobrazen\IeC {\'\i } sylabu}{3}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Podm\IeC {\'\i }nky}{4}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.7}Podm\IeC {\'\i }nky a \IeC {\'u}koly}{4}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.8}Absence}{4}{subsection.2.8}
 \contentsline {section}{\numberline {3}U\IeC {\v z}ivatelsk\IeC {\'a} dokumentace}{4}{section.3}
-\contentsline {section}{\numberline {4}\IeC {\v R}e\IeC {\v s}en\IeC {\'e} probl\IeC {\'e}my}{4}{section.4}
-\contentsline {section}{\numberline {5}Testov\IeC {\'a}n\IeC {\'\i }}{4}{section.5}
-\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{4}{section.6}
+\contentsline {subsection}{\numberline {3.1}Hlavn\IeC {\'\i } obrazovka}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}P\IeC {\v r}id\IeC {\'a}n\IeC {\'\i } rozvrhu}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Odstran\IeC {\v e}n\IeC {\'\i } rozvrh\IeC {\r u}}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Nastaven\IeC {\'\i }}{7}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}O aplikaci}{7}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Sylabus}{8}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Podm\IeC {\'\i }nky}{9}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}P\IeC {\v r}id\IeC {\'a}n\IeC {\'\i } podm\IeC {\'\i }nky}{9}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}Upraven\IeC {\'\i } podm\IeC {\'\i }nky}{9}{subsubsection.3.7.2}
+\contentsline {subsubsection}{\numberline {3.7.3}Smaz\IeC {\'a}n\IeC {\'\i } podm\IeC {\'\i }nky}{9}{subsubsection.3.7.3}
+\contentsline {subsection}{\numberline {3.8}\IeC {\'U}koly}{10}{subsection.3.8}
+\contentsline {subsubsection}{\numberline {3.8.1}P\IeC {\v r}id\IeC {\'a}n\IeC {\'\i } \IeC {\'u}kolu}{10}{subsubsection.3.8.1}
+\contentsline {subsubsection}{\numberline {3.8.2}Upraven\IeC {\'\i } \IeC {\'u}kolu}{10}{subsubsection.3.8.2}
+\contentsline {subsubsection}{\numberline {3.8.3}Smaz\IeC {\'a}n\IeC {\'\i } \IeC {\'u}kolu}{11}{subsubsection.3.8.3}
+\contentsline {subsection}{\numberline {3.9}Absence}{13}{subsection.3.9}
+\contentsline {section}{\numberline {4}\IeC {\v R}e\IeC {\v s}en\IeC {\'e} probl\IeC {\'e}my}{13}{section.4}
+\contentsline {subsection}{\numberline {4.1}ExpandableListView}{13}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}TabLayout}{14}{subsection.4.2}
+\contentsline {section}{\numberline {5}Testov\IeC {\'a}n\IeC {\'\i }}{14}{section.5}
+\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{14}{section.6}

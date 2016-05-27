@@ -541,17 +541,8 @@ public class MainActivity extends AppCompatActivity {
 			}
 		} else if (requestCode == 1) {
 			if (resultCode == RESULT_OK) {
-				subjectsMo = data.getParcelableArrayListExtra("subjects0");
-				subjectsTu = data.getParcelableArrayListExtra("subjects1");
-				subjectsWe = data.getParcelableArrayListExtra("subjects2");
-				subjectsTh = data.getParcelableArrayListExtra("subjects3");
-				subjectsFr = data.getParcelableArrayListExtra("subjects4");
-				subjectsSa = data.getParcelableArrayListExtra("subjects5");
-				subjectsSu = data.getParcelableArrayListExtra("subjects6");
-				subjectsOther = data.getParcelableArrayListExtra("subjects7");
-				personalNumber = data.getStringExtra("personalNumber");
-				semester = data.getStringExtra("semester");
 				setupSpinner();
+				readConfig();
 			}
 		}
 	}
