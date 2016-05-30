@@ -12,31 +12,30 @@
                 tools:context=".AbsencesActivity"
                 tools:showIn="@layout/activity_absences">
 
-    <NumberPicker
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/absences_title"/>
+
+    <NumberPicker
         android:id="@+id/absencesPicker"
-        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:descendantFocusability="blocksDescendants"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/absences_title"
-        android:layout_above="@+id/absencesPicker"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"/>
-
     <Button
+        android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_absence"
-        android:id="@+id/addTaskButton"
-        android:layout_gravity="center_horizontal"
-        android:onClick="addAbsence"
         android:layout_below="@+id/absencesPicker"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
+        android:layout_gravity="center_horizontal"
+        android:onClick="addAbsence"
+        android:text="@string/add_absence"/>
 
 </RelativeLayout>
